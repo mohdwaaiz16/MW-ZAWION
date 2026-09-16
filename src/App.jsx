@@ -17,6 +17,7 @@ import Intelligence from './pages/Intelligence';
 import About from './pages/About';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
+import Links from './pages/Links';
 import NotFound from './pages/NotFound';
 
 function AppContent() {
@@ -48,6 +49,7 @@ function AppContent() {
             <Route path="/about" element={<About />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/links" element={<Links />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </PageTransition>

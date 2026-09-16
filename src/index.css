@@ -2,14 +2,14 @@
 
 @theme {
   --color-mw-black: #111111;
-  --color-mw-dark: #111111;
-  --color-mw-border: #DCDCD6;
+  --color-mw-dark: #242424;
+  --color-mw-border: #E3E3DD;
   --color-mw-white: #F7F7F2;
   --color-mw-muted: #686866;
-  --color-mw-lightgrey: #F0F0EA;
+  --color-mw-lightgrey: #E3E3DD;
   --color-mw-accent: #3155FF;
   --color-mw-lime: #C8FF3D;
-  --color-mw-softblue: #E8ECFF;
+  --color-mw-softblue: #E9EDFF;
   --font-sans: "Space Grotesk", "Satoshi", "Inter", sans-serif;
 }
 
