@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/UI/Button';
 
 const Capabilities = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -52,44 +53,47 @@ const Capabilities = () => {
 
       {/* Capabilities List */}
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col border-t border-mw-border">
-          {capabilities.map((cap, index) => (
-            <div 
-              key={index} 
-              className="flex flex-col lg:flex-row justify-between items-start lg:items-center py-16 border-b border-mw-border group relative"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              
-              <div className="flex items-start lg:items-center gap-8 mb-6 lg:mb-0 lg:w-1/2">
-                <span className={`font-mono text-sm tracking-widest transition-colors ${hoveredIndex === index ? 'text-mw-accent' : 'text-mw-muted'}`}>
-                  0{index + 1}
-                </span>
-                <h3 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
-                  {cap.title}
-                </h3>
-              </div>
-              
-              <div className="lg:w-1/2 flex flex-col md:flex-row justify-between items-start gap-8">
-                <p className="text-mw-muted text-lg font-light leading-relaxed max-w-sm">
-                  {cap.desc}
-                </p>
-                <div className="text-left md:text-right">
-                  <span className="block text-xs font-mono tracking-widest text-mw-muted uppercase mb-2">Technology</span>
-                  <span className="block text-sm font-bold tracking-widest uppercase">{cap.tech}</span>
+        <div className="flex flex-col border-t-2 border-mw-border">
+          {capabilities.map((cap, index) => {
+            const hoverColors = ['group-hover:text-mw-coral', 'group-hover:text-mw-electric', 'group-hover:text-mw-purple', 'group-hover:text-mw-lime', 'group-hover:text-mw-accent'];
+            return (
+              <div 
+                key={index} 
+                className="flex flex-col lg:flex-row justify-between items-start lg:items-center py-16 border-b-2 border-mw-border group relative transition-colors duration-500 hover:bg-mw-lightgrey px-8 -mx-8 rounded-2xl"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                
+                <div className="flex items-start lg:items-center gap-8 mb-6 lg:mb-0 lg:w-1/2">
+                  <span className={`font-mono text-sm tracking-widest transition-colors ${hoveredIndex === index ? hoverColors[index].replace('group-hover:', '') : 'text-mw-muted'}`}>
+                    0{index + 1}
+                  </span>
+                  <h3 className={`text-3xl md:text-5xl font-bold tracking-tighter uppercase leading-none transition-colors duration-300 ${hoverColors[index]}`}>
+                    {cap.title}
+                  </h3>
                 </div>
-              </div>
+                
+                <div className="lg:w-1/2 flex flex-col md:flex-row justify-between items-start gap-8">
+                  <p className="text-mw-muted text-lg font-light leading-relaxed max-w-sm group-hover:text-mw-black transition-colors">
+                    {cap.desc}
+                  </p>
+                  <div className="text-left md:text-right">
+                    <span className="block text-xs font-mono tracking-widest text-mw-muted uppercase mb-2">Technology</span>
+                    <span className="block text-sm font-bold tracking-widest uppercase text-mw-black/80">{cap.tech}</span>
+                  </div>
+                </div>
 
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
       </div>
 
       {/* CTA */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-32">
-        <Link to="/contact" className="inline-block bg-mw-black text-mw-white hover:bg-mw-accent transition-colors font-bold tracking-widest uppercase text-sm px-12 py-5">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-32 text-center md:text-left">
+        <Button to="/contact" variant="primary">
           START A PROJECT →
-        </Link>
+        </Button>
       </div>
 
     </div>

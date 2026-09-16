@@ -78,39 +78,45 @@ const Pricing = () => {
 
       {/* Standard Pricing Grid */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-32">
-        {packages.map((pkg, i) => (
-          <div key={i} className="border border-mw-border p-8 flex flex-col h-full bg-mw-white hover:border-mw-black transition-colors group">
-            <h3 className="text-xl font-bold tracking-widest uppercase mb-4 text-mw-muted group-hover:text-mw-black transition-colors">{pkg.name}</h3>
-            <div className="text-3xl font-bold tracking-tighter mb-4">{pkg.price}</div>
-            <p className="text-sm text-mw-muted mb-8 h-12">{pkg.for}</p>
-            
-            <ul className="flex flex-col gap-4 mb-12 flex-grow">
-              {pkg.features.map((feature, j) => (
-                <li key={j} className="text-sm font-light flex items-start gap-3">
-                  <span className="text-mw-accent mt-0.5">●</span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        {packages.map((pkg, i) => {
+          const colors = ['border-mw-coral/30 hover:border-mw-coral', 'border-mw-electric/30 hover:border-mw-electric', 'border-mw-lime/50 hover:border-mw-lime', 'border-mw-purple/30 hover:border-mw-purple'];
+          const bgColors = ['bg-mw-coral/5', 'bg-mw-electric/5', 'bg-mw-lime/10', 'bg-mw-purple/5'];
+          const textColors = ['text-mw-coral', 'text-mw-electric', 'text-mw-black', 'text-mw-purple'];
+          
+          return (
+            <div key={i} className={`border-2 p-8 flex flex-col h-full transition-all duration-300 group hover:shadow-xl rounded-2xl ${colors[i % 4]} ${bgColors[i % 4]}`}>
+              <h3 className={`text-xl font-bold tracking-widest uppercase mb-4 transition-colors ${textColors[i % 4]}`}>{pkg.name}</h3>
+              <div className="text-3xl font-bold tracking-tighter mb-4 text-mw-black">{pkg.price}</div>
+              <p className="text-sm text-mw-black/70 mb-8 h-12 font-light">{pkg.for}</p>
+              
+              <ul className="flex flex-col gap-4 mb-12 flex-grow">
+                {pkg.features.map((feature, j) => (
+                  <li key={j} className="text-sm font-light flex items-start gap-3">
+                    <span className={`mt-0.5 ${textColors[i % 4]}`}>●</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
 
-            <Button to={`/estimate?package=${pkg.name} (${pkg.price})`} variant="outline" fullWidth>
-              INQUIRE →
-            </Button>
-          </div>
-        ))}
+              <Button to={`/estimate?package=${pkg.name} (${pkg.price})`} variant="outline" fullWidth className="bg-mw-white hover:bg-mw-black hover:text-mw-white hover:border-mw-black">
+                INQUIRE →
+              </Button>
+            </div>
+          )
+        })}
       </div>
 
       {/* AI Systems Special Block */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-32">
-        <div className="bg-mw-dark text-mw-white rounded-3xl p-8 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div className="bg-mw-purple text-mw-white rounded-3xl p-8 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 shadow-2xl shadow-mw-purple/20">
           <div className="md:w-1/2">
-            <h2 className="text-sm font-mono tracking-widest text-mw-lime uppercase mb-4">SPECIALIZED ENGINEERING</h2>
+            <h2 className="text-sm font-mono tracking-widest text-mw-lime uppercase mb-4 bg-mw-black/20 inline-block px-3 py-1 rounded-full">SPECIALIZED ENGINEERING</h2>
             <h3 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-4">AI SYSTEMS</h3>
-            <p className="text-mw-muted font-light mb-2">For AI applications, automation and intelligent workflows.</p>
-            <div className="text-2xl font-bold tracking-tighter mt-4">Starting at ₹75,000+</div>
+            <p className="text-white/80 font-light mb-2">For AI applications, automation and intelligent workflows.</p>
+            <div className="text-2xl font-bold tracking-tighter mt-4 text-mw-lime">Starting at ₹75,000+</div>
           </div>
           <div className="md:w-1/2 flex justify-start md:justify-end">
-            <Button to="/estimate?type=AI System&package=AI Systems (₹75K+)" variant="accent">
+            <Button to="/estimate?type=AI System&package=AI Systems (₹75K+)" variant="accent" className="bg-mw-lime text-mw-black hover:bg-mw-white shadow-lg shadow-mw-lime/20">
               DISCUSS AI PROJECT →
             </Button>
           </div>

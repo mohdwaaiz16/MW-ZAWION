@@ -24,15 +24,15 @@ const Links = () => {
   ];
 
   return (
-    <div className="w-full bg-mw-white min-h-screen text-mw-black pt-16 pb-32 flex flex-col items-center">
+    <div className="w-full bg-mw-lime min-h-screen text-mw-black pt-16 pb-32 flex flex-col items-center">
       
       {/* Header Profile */}
       <div className="flex flex-col items-center mb-12 px-6 text-center">
-        <Link to="/" className="w-20 h-20 bg-mw-black text-mw-white rounded-full flex items-center justify-center font-bold tracking-widest uppercase mb-6 hover:scale-105 transition-transform">
+        <Link to="/" className="w-20 h-20 bg-mw-purple text-mw-white rounded-full flex items-center justify-center font-bold tracking-widest uppercase mb-6 hover:scale-105 transition-transform shadow-xl shadow-mw-purple/20">
           MW
         </Link>
         <h1 className="text-2xl font-bold tracking-tighter uppercase mb-2">MW ZAWION</h1>
-        <p className="text-mw-muted font-light text-sm max-w-[280px]">
+        <p className="text-mw-black/70 font-light text-sm max-w-[280px]">
           Digital Product & Technology Studio<br />
           Bangalore / India
         </p>
@@ -48,15 +48,15 @@ const Links = () => {
             to={link.url}
             className={`w-full py-4 px-6 text-center text-sm font-bold tracking-widest uppercase rounded-full transition-transform active:scale-95 hover:scale-[1.02] ${
               link.primary 
-                ? 'bg-mw-accent text-mw-white shadow-lg shadow-mw-accent/20 border-2 border-mw-accent' 
-                : 'bg-mw-white text-mw-black border-2 border-mw-border hover:border-mw-black'
+                ? 'bg-mw-electric text-mw-white shadow-lg shadow-mw-electric/30 border-2 border-mw-electric' 
+                : 'bg-mw-white text-mw-black shadow-md shadow-mw-black/5 hover:bg-mw-softblue hover:text-mw-electric'
             }`}
           >
             {link.label}
           </Link>
         ))}
 
-        <div className="w-full h-px bg-mw-border my-6"></div>
+        <div className="w-full h-px bg-mw-black/10 my-6"></div>
 
         {/* Social */}
         {socialLinks.map((link, index) => (
@@ -65,7 +65,7 @@ const Links = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-4 px-6 text-center text-sm font-bold tracking-widest uppercase rounded-full bg-mw-lightgrey text-mw-black transition-transform active:scale-95 hover:scale-[1.02]"
+            className="w-full py-4 px-6 text-center text-sm font-bold tracking-widest uppercase rounded-full bg-mw-coral text-mw-white shadow-lg shadow-mw-coral/20 transition-transform active:scale-95 hover:scale-[1.02]"
           >
             {link.label}
           </a>

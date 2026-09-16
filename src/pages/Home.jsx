@@ -11,12 +11,12 @@ const Home = () => {
   const featuredProjects = projects.slice(0, 3);
 
   const exploreDestinations = [
-    { title: "OUR WORK", desc: "View our portfolio of digital systems.", url: "/work", color: "bg-mw-lightgrey" },
-    { title: "WHAT WE BUILD", desc: "Explore our capabilities and services.", url: "/capabilities", color: "bg-mw-lightgrey" },
-    { title: "AI & AUTOMATION", desc: "Intelligent systems for business.", url: "/intelligence", color: "bg-mw-softblue text-mw-accent" },
-    { title: "PRICING", desc: "Transparent starting points.", url: "/pricing", color: "bg-mw-lightgrey" },
-    { title: "ABOUT US", desc: "The studio behind the work.", url: "/about", color: "bg-mw-lightgrey" },
-    { title: "START A PROJECT", desc: "Tell us what you're building.", url: "/contact", color: "bg-mw-dark text-mw-white" }
+    { title: "OUR WORK", desc: "View our portfolio of digital systems.", url: "/work", color: "bg-mw-softblue text-mw-electric border-mw-electric/30 hover:border-mw-electric" },
+    { title: "WHAT WE BUILD", desc: "Explore our capabilities and services.", url: "/capabilities", color: "bg-mw-lime text-mw-black border-mw-lime hover:border-mw-black" },
+    { title: "AI & AUTOMATION", desc: "Intelligent systems for business.", url: "/intelligence", color: "bg-mw-purple text-mw-white border-mw-purple hover:border-mw-black" },
+    { title: "PRICING", desc: "Transparent starting points.", url: "/pricing", color: "bg-mw-coral text-mw-white border-mw-coral hover:border-mw-black" },
+    { title: "ABOUT US", desc: "The studio behind the work.", url: "/about", color: "bg-mw-softblue text-mw-black border-mw-softblue hover:border-mw-black" },
+    { title: "START A PROJECT", desc: "Tell us what you're building.", url: "/contact", color: "bg-mw-electric text-mw-white border-mw-electric hover:border-mw-black" }
   ];
 
   const buildOptions = [
@@ -48,7 +48,7 @@ const Home = () => {
         </div>
         
         <h1 className="text-5xl md:text-[6vw] font-bold tracking-tighter uppercase leading-none max-w-5xl mb-8">
-          WE BUILD DIGITAL PRODUCTS FOR AMBITIOUS BUSINESSES.
+          <span className="text-mw-electric">WE BUILD</span> DIGITAL PRODUCTS FOR AMBITIOUS BUSINESSES.
         </h1>
         
         <p className="text-mw-muted text-lg md:text-2xl max-w-2xl mb-12 font-light leading-relaxed">
@@ -56,7 +56,7 @@ const Home = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 mb-24">
-          <Link to="/contact" className="bg-mw-accent text-mw-white hover:bg-mw-black transition-colors font-bold tracking-widest uppercase text-sm px-8 py-4 text-center rounded-full shadow-lg shadow-mw-accent/20">
+          <Link to="/contact" className="bg-mw-electric text-mw-white hover:bg-mw-black transition-colors font-bold tracking-widest uppercase text-sm px-8 py-4 text-center rounded-full shadow-lg shadow-mw-electric/20">
             START A PROJECT →
           </Link>
           <Link to="/work" className="border-2 border-mw-border text-mw-black hover:border-mw-black transition-colors font-bold tracking-widest uppercase text-sm px-8 py-4 text-center rounded-full">
@@ -66,10 +66,10 @@ const Home = () => {
       </div>
 
       {/* Quick Action Strip */}
-      <div className="w-full border-y border-mw-border bg-mw-white sticky top-0 z-40 overflow-x-auto hide-scrollbar">
+      <div className="w-full bg-mw-electric text-mw-white sticky top-0 z-40 overflow-x-auto hide-scrollbar shadow-xl shadow-mw-electric/10">
         <div className="max-w-7xl mx-auto flex items-center justify-start md:justify-between whitespace-nowrap min-w-max md:min-w-0">
           {['BUILD A WEBSITE', 'BUILD AN APP', 'ADD AI', 'AUTOMATE YOUR BUSINESS', 'TALK TO US'].map((action, i) => (
-            <Link key={i} to="/contact" className="px-6 md:px-8 py-4 text-xs font-bold tracking-widest uppercase text-mw-muted hover:text-mw-accent hover:bg-mw-lightgrey transition-colors flex items-center gap-2 border-r border-mw-border last:border-r-0">
+            <Link key={i} to="/contact" className="px-6 md:px-8 py-4 text-xs font-bold tracking-widest uppercase hover:bg-mw-white hover:text-mw-electric transition-colors flex items-center gap-2 border-r border-mw-white/20 last:border-r-0">
               {action} <span>→</span>
             </Link>
           ))}
@@ -83,14 +83,14 @@ const Home = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {exploreDestinations.map((dest, i) => (
-            <Link key={i} to={dest.url} className={`p-8 border border-mw-border rounded-xl group cursor-hover transition-transform hover:-translate-y-1 ${dest.color}`}>
+            <Link key={i} to={dest.url} className={`p-8 border-2 rounded-2xl group cursor-hover transition-all hover:-translate-y-2 hover:shadow-2xl ${dest.color}`}>
               <div className="flex justify-between items-start mb-12">
                 <h3 className="text-2xl font-bold tracking-tighter uppercase w-2/3 leading-tight">{dest.title}</h3>
-                <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center group-hover:scale-110 transition-transform bg-white/10">
                   →
                 </div>
               </div>
-              <p className="font-light text-sm opacity-80">{dest.desc}</p>
+              <p className="font-light text-sm opacity-90">{dest.desc}</p>
             </Link>
           ))}
         </div>
