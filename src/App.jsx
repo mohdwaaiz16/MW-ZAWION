@@ -1,25 +1,28 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 
 import LoadingSequence from './components/Loading/LoadingSequence';
-import Navigation from './components/Navigation/Navigation';
-import Footer from './components/Footer/Footer';
-
-import TheVoid from './sections/Act1/TheVoid';
-import CinematicStory from './components/Story/CinematicStory';
-import ServicesList from './sections/Services/ServicesList';
-import SelectedWork from './sections/Act5/SelectedWork';
-import CinematicPricing from './components/Pricing/CinematicPricing';
-import ProjectEstimator from './components/Estimator/ProjectEstimator';
-import TheHuman from './sections/Act6/TheHuman';
-import Philosophy from './sections/Philosophy/Philosophy';
-import FinalCTA from './components/Estimator/FinalCTA';
-
+import GlobalNav from './components/Navigation/GlobalNav';
+import ZawionCore from './components/Core/ZawionCore';
+import PageTransition from './components/Transitions/PageTransition';
+import EasterEgg from './components/Interaction/EasterEgg';
 import CustomCursor from './components/Interaction/CustomCursor';
 import FilmGrain from './components/Effects/FilmGrain';
 
-function App() {
+// Pages
+import Home from './pages/Home';
+import Work from './pages/Work';
+import Services from './pages/Services';
+import Pricing from './pages/Pricing';
+import Lab from './pages/Lab';
+import Intelligence from './pages/Intelligence';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
+function AppContent() {
   const [isLoading, setIsLoading] = React.useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -34,7 +37,6 @@ function App() {
       infinite: false,
     });
 
-    // Handle scroll for GSAP
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -44,33 +46,41 @@ function App() {
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, [location.pathname]); // Re-init Lenis on route change if needed, or just let it persist
 
   return (
     <div className="bg-mw-black min-h-screen text-mw-white selection:bg-mw-accent selection:text-mw-black overflow-x-hidden">
       <CustomCursor />
       <FilmGrain />
+      <ZawionCore />
+      <EasterEgg />
+      <GlobalNav />
       
       {isLoading && <LoadingSequence onComplete={() => setIsLoading(false)} />}
       
       <div className={isLoading ? 'h-screen overflow-hidden' : ''}>
-        <Navigation />
-        
-        <main>
-          <TheVoid />
-          <CinematicStory />
-          <ServicesList />
-          <SelectedWork />
-          <CinematicPricing />
-          <ProjectEstimator />
-          <TheHuman />
-          <Philosophy />
-          <FinalCTA />
-        </main>
-        
-        <Footer />
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/lab" element={<Lab />} />
+            <Route path="/intelligence" element={<Intelligence />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </PageTransition>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
