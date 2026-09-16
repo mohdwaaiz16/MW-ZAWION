@@ -56,4 +56,12 @@ function AppContent() {
   );
 }
 
-export default AppContent;
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+export default App;
