@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 
 import LoadingSequence from './components/Loading/LoadingSequence';
 import GlobalNav from './components/Navigation/GlobalNav';
+import Footer from './components/Navigation/Footer';
 import PageTransition from './components/Transitions/PageTransition';
 
 // Pages
@@ -17,6 +18,7 @@ import Intelligence from './pages/Intelligence';
 import About from './pages/About';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
+import Estimate from './pages/Estimate';
 import Links from './pages/Links';
 import NotFound from './pages/NotFound';
 
@@ -49,10 +51,12 @@ function AppContent() {
             <Route path="/about" element={<About />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/estimate" element={<Estimate />} />
             <Route path="/links" element={<Links />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </PageTransition>
+        <Footer />
       </div>
     </div>
   );

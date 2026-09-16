@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { clsx } from 'clsx';
+import Button from '../UI/Button';
 
 const GlobalNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,7 @@ const GlobalNav = () => {
     { name: 'WORK', path: '/work' },
     { name: 'CAPABILITIES', path: '/capabilities' },
     { name: 'INDUSTRIES', path: '/industries' },
+    { name: 'PRICING', path: '/pricing' },
     { name: 'ABOUT', path: '/about' },
     { name: 'INSIGHTS', path: '/insights' }
   ];
@@ -22,6 +24,24 @@ const GlobalNav = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEsc);
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -35,8 +55,8 @@ const GlobalNav = () => {
           <Link to="/" className="text-mw-black font-bold tracking-widest uppercase cursor-hover hover:text-mw-accent transition-colors flex items-center gap-3">
             MW ZAWION
             <div className="hidden md:flex items-center gap-1.5 opacity-60">
-              <div className="w-1.5 h-1.5 rounded-full bg-mw-lime"></div>
-              <span className="text-[10px] font-mono tracking-widest">ONLINE</span>
+              <div className="w-2 h-2 rounded-full bg-mw-lime animate-pulse"></div>
+              <span className="text-[10px] font-mono tracking-widest text-mw-muted">ONLINE</span>
             </div>
           </Link>
 
@@ -47,7 +67,7 @@ const GlobalNav = () => {
                 key={link.path} 
                 to={link.path}
                 className={clsx(
-                  "text-xs font-bold tracking-widest uppercase cursor-hover transition-colors",
+                  "text-[10px] md:text-xs font-bold tracking-widest uppercase cursor-hover transition-colors",
                   location.pathname === link.path ? "text-mw-accent" : "text-mw-muted hover:text-mw-black"
                 )}
               >
@@ -58,7 +78,7 @@ const GlobalNav = () => {
 
           {/* Right: CTA (Desktop) & Menu (Mobile) */}
           <div className="flex items-center gap-4">
-            <Link to="/contact" className="hidden md:flex text-xs font-bold tracking-widest text-mw-black uppercase items-center gap-2 hover:text-mw-accent transition-colors cursor-hover">
+            <Link to="/contact" className="hidden lg:flex text-xs font-bold tracking-widest text-mw-black uppercase items-center gap-2 hover:text-mw-accent transition-colors cursor-hover">
               START A PROJECT <span className="text-mw-accent">→</span>
             </Link>
             
@@ -78,24 +98,41 @@ const GlobalNav = () => {
         "fixed inset-0 bg-mw-black z-40 flex flex-col justify-center items-center transition-opacity duration-500",
         menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
-        <div className="flex flex-col gap-8 text-center">
-          <Link to="/" onClick={() => setMenuOpen(false)} className="text-2xl font-bold tracking-tighter text-mw-white hover:text-mw-accent transition-colors uppercase">HOME</Link>
+        
+        <div className="absolute top-8 right-6">
+          <button 
+            className="text-xs font-bold tracking-widest text-mw-white uppercase hover:text-mw-accent transition-colors"
+            onClick={() => setMenuOpen(false)}
+          >
+            CLOSE
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-6 text-center w-full px-6">
+          <Link to="/" onClick={() => setMenuOpen(false)} className="text-3xl font-bold tracking-tighter text-mw-white hover:text-mw-accent transition-colors uppercase">HOME</Link>
           {links.map(link => (
             <Link 
               key={link.path} 
               to={link.path}
               onClick={() => setMenuOpen(false)}
               className={clsx(
-                "text-2xl font-bold tracking-tighter uppercase transition-colors",
+                "text-3xl font-bold tracking-tighter uppercase transition-colors",
                 location.pathname === link.path ? "text-mw-accent" : "text-mw-white hover:text-mw-muted"
               )}
             >
               {link.name}
             </Link>
           ))}
-          <Link to="/contact" onClick={() => setMenuOpen(false)} className="mt-8 text-sm font-bold tracking-widest text-mw-black bg-mw-lime px-8 py-4 uppercase hover:bg-mw-white transition-colors">
-            START A PROJECT →
-          </Link>
+          <div className="mt-8">
+            <Button to="/contact" variant="accent" fullWidth onClick={() => setMenuOpen(false)}>
+              START A PROJECT →
+            </Button>
+          </div>
+          
+          <div className="flex justify-center gap-6 mt-12 border-t border-mw-dark pt-8">
+             <a href="https://instagram.com" className="text-xs font-mono tracking-widest text-mw-muted uppercase hover:text-mw-white">Instagram</a>
+             <a href="https://linkedin.com" className="text-xs font-mono tracking-widest text-mw-muted uppercase hover:text-mw-white">LinkedIn</a>
+          </div>
         </div>
       </div>
     </>

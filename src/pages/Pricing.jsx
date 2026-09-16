@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/UI/Button';
 
 const Pricing = () => {
   useEffect(() => {
@@ -92,16 +93,16 @@ const Pricing = () => {
               ))}
             </ul>
 
-            <Link to="/contact" className="w-full text-center border border-mw-border py-4 text-xs font-bold tracking-widest uppercase hover:bg-mw-black hover:text-mw-white transition-colors">
+            <Button to={`/estimate?package=${pkg.name} (${pkg.price})`} variant="outline" fullWidth>
               INQUIRE →
-            </Link>
+            </Button>
           </div>
         ))}
       </div>
 
       {/* AI Systems Special Block */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="bg-mw-dark text-mw-white p-8 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-32">
+        <div className="bg-mw-dark text-mw-white rounded-3xl p-8 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div className="md:w-1/2">
             <h2 className="text-sm font-mono tracking-widest text-mw-lime uppercase mb-4">SPECIALIZED ENGINEERING</h2>
             <h3 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-4">AI SYSTEMS</h3>
@@ -109,9 +110,40 @@ const Pricing = () => {
             <div className="text-2xl font-bold tracking-tighter mt-4">Starting at ₹75,000+</div>
           </div>
           <div className="md:w-1/2 flex justify-start md:justify-end">
-            <Link to="/contact" className="bg-mw-lime text-mw-black px-8 py-5 text-sm font-bold tracking-widest uppercase hover:bg-mw-white transition-colors">
+            <Button to="/estimate?type=AI System&package=AI Systems (₹75K+)" variant="accent">
               DISCUSS AI PROJECT →
-            </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ & Next Steps Section */}
+      <div className="max-w-3xl mx-auto px-6 md:px-12 text-center border-t border-mw-border pt-32">
+        <h2 className="text-sm font-bold tracking-widest uppercase text-mw-muted mb-4">NOT SURE WHICH OPTION FITS?</h2>
+        <h3 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase mb-12">
+          TELL US WHAT YOU'RE BUILDING.
+        </h3>
+        <Button to="/estimate" variant="primary" className="mb-24">GET A PROJECT ESTIMATE →</Button>
+        
+        <div className="text-left bg-mw-lightgrey rounded-3xl p-8 md:p-12">
+          <h4 className="text-2xl font-bold tracking-tighter uppercase mb-8 border-b border-mw-border pb-4">FREQUENTLY ASKED QUESTIONS</h4>
+          <div className="space-y-8">
+            <div>
+              <h5 className="font-bold tracking-widest text-sm uppercase mb-2">How does pricing work?</h5>
+              <p className="text-mw-muted text-sm font-light">We price based on the project's scope, complexity, and the engineering effort required, not hourly rates.</p>
+            </div>
+            <div>
+              <h5 className="font-bold tracking-widest text-sm uppercase mb-2">How long does a project take?</h5>
+              <p className="text-mw-muted text-sm font-light">Launch projects take 2-4 weeks. Larger web applications and AI systems typically take 1-3 months.</p>
+            </div>
+            <div>
+              <h5 className="font-bold tracking-widest text-sm uppercase mb-2">Do you build custom applications?</h5>
+              <p className="text-mw-muted text-sm font-light">Yes. We specialize in custom React/Node architectures and full-stack web applications.</p>
+            </div>
+            <div>
+              <h5 className="font-bold tracking-widest text-sm uppercase mb-2">Can you provide ongoing support?</h5>
+              <p className="text-mw-muted text-sm font-light">Every project includes a post-launch support period, and we offer retainers for ongoing development.</p>
+            </div>
           </div>
         </div>
       </div>
