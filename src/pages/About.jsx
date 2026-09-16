@@ -3,71 +3,58 @@ import React, { useEffect } from 'react';
 const About = () => {
   useEffect(() => {
     document.title = "MW Zawion — About";
+    window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-mw-black pt-32 pb-48 px-6 md:px-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl md:text-5xl font-bold tracking-tighter text-mw-white uppercase mb-4">
-          BEHIND EVERY SYSTEM<br />
-          <span className="text-mw-muted">IS A HUMAN.</span>
+    <div className="w-full bg-mw-white min-h-screen text-mw-black pt-32 pb-48">
+      
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-24 mb-32">
+        <h1 className="text-5xl md:text-[6vw] font-bold tracking-tighter uppercase leading-none mb-6">
+          ABOUT MW ZAWION.
         </h1>
-        
-        <div className="mt-24">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-mw-accent uppercase mb-2">
-            MOHAMMED WAAIZ
-          </h2>
-          <span className="text-mw-muted font-mono text-sm tracking-widest uppercase">Founder / Developer / Builder</span>
+        <p className="text-mw-muted text-lg md:text-2xl font-light max-w-3xl leading-relaxed">
+          MW Zawion is a digital product and technology studio based in Bangalore, India. We bring together design, software engineering and emerging technologies to create digital products and systems for ambitious businesses.
+        </p>
+      </div>
+
+      {/* Founder Section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="border-t border-mw-border pt-16 flex flex-col md:flex-row gap-16">
           
-          <p className="text-mw-white/80 text-lg md:text-2xl mt-8 max-w-2xl leading-relaxed font-light">
-            "I build digital products, websites and intelligent systems at the intersection of technology and creativity."
-          </p>
-        </div>
-
-        <div className="mt-32">
-          <div className="flex flex-col gap-12 border-l border-mw-dark pl-8 relative">
-            <div className="relative">
-              <div className="absolute -left-[37px] top-1 w-2 h-2 bg-mw-accent rounded-full"></div>
-              <span className="text-mw-accent font-mono text-xs tracking-widest block mb-2">2024</span>
-              <h3 className="text-2xl font-bold tracking-widest text-mw-white uppercase">IDEAS</h3>
+          <div className="md:w-1/3">
+            <div className="w-32 h-32 bg-mw-lightgrey mb-6 rounded-full overflow-hidden border border-mw-border">
+              {/* Placeholder for portrait */}
+              <div className="w-full h-full bg-mw-muted/20"></div>
             </div>
-            
-            <div className="relative">
-              <div className="absolute -left-[37px] top-1 w-2 h-2 bg-mw-accent rounded-full"></div>
-              <span className="text-mw-accent font-mono text-xs tracking-widest block mb-2">2025</span>
-              <h3 className="text-2xl font-bold tracking-widest text-mw-white uppercase">ENGINEERING</h3>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute -left-[37px] top-1 w-2 h-2 bg-mw-accent rounded-full shadow-[0_0_10px_#00FFD1]"></div>
-              <span className="text-mw-accent font-mono text-xs tracking-widest block mb-2">2026</span>
-              <h3 className="text-3xl font-bold tracking-widest text-mw-white uppercase">MW ZAWION</h3>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute -left-[37px] top-1 w-2 h-2 border border-mw-dark bg-mw-black rounded-full"></div>
-              <span className="text-mw-muted font-mono text-xs tracking-widest block mb-2">2027</span>
-              <h3 className="text-2xl font-bold tracking-widest text-mw-muted uppercase">?</h3>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-32 flex flex-col md:flex-row justify-between items-start md:items-end border-t border-mw-dark pt-8">
-          <div>
-            <span className="text-mw-muted font-mono text-xs tracking-widest block mb-4">LOCATION</span>
-            <span className="text-mw-white font-bold tracking-widest uppercase">Bangalore / India</span>
+            <h2 className="text-2xl font-bold tracking-tighter uppercase mb-2">MOHAMMED WAAIZ</h2>
+            <span className="text-xs font-mono tracking-widest text-mw-muted uppercase">Founder / Builder</span>
           </div>
           
-          <div className="mt-12 md:mt-0 text-left md:text-right">
-            <span className="text-mw-muted font-mono text-xs tracking-widest block mb-4">WHAT I BUILD</span>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 max-w-sm justify-start md:justify-end">
-              {["WEB", "AI", "AUTOMATION", "ROBOTICS", "DIGITAL PRODUCTS"].map(item => (
-                <span key={item} className="text-mw-white font-bold tracking-widest uppercase text-sm">{item}</span>
-              ))}
+          <div className="md:w-2/3 flex flex-col gap-12">
+            <div>
+              <h3 className="text-sm font-mono tracking-widest text-mw-muted uppercase mb-4">BACKGROUND</h3>
+              <p className="text-lg font-light leading-relaxed">
+                Focused on bridging the gap between high-end design and robust engineering, Mohammed leads the technical and creative direction at MW Zawion, ensuring every project is both beautiful and functional at scale.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-sm font-mono tracking-widest text-mw-muted uppercase mb-4">TECHNOLOGY & STACK</h3>
+              <div className="flex flex-wrap gap-4">
+                {['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'AI / LLMs', 'Automation', 'Supabase', 'PostgreSQL'].map(tech => (
+                  <span key={tech} className="border border-mw-border px-4 py-2 text-sm font-mono tracking-widest uppercase bg-mw-lightgrey">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
+          
         </div>
       </div>
+
     </div>
   );
 };

@@ -1,90 +1,65 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Intelligence = () => {
-  const containerRef = useRef(null);
-
   useEffect(() => {
-    document.title = "MW Zawion — AI & Intelligent Systems";
-    
-    const container = containerRef.current;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: "+=4000",
-        scrub: 1,
-        pin: true,
-      }
-    });
-
-    const intro1 = container.querySelector('.ai-intro-1');
-    const intro2 = container.querySelector('.ai-intro-2');
-    const list = container.querySelector('.ai-list');
-    const core = container.querySelector('.ai-core-text');
-    const formula = container.querySelector('.ai-formula');
-
-    gsap.set([intro2, list, core, formula], { autoAlpha: 0, scale: 0.9, position: "absolute", top: "50%", left: "50%", xPercent: -50, yPercent: -50 });
-    gsap.set(intro1, { position: "absolute", top: "50%", left: "50%", xPercent: -50, yPercent: -50 });
-
-    tl.to(intro1, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to(intro2, { autoAlpha: 1, scale: 1, duration: 1 })
-      .to(intro2, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to(list, { autoAlpha: 1, scale: 1, duration: 2 })
-      .to(list, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to(core, { autoAlpha: 1, scale: 1, duration: 2 })
-      .to(core, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to(formula, { autoAlpha: 1, scale: 1, duration: 2 })
-      .to({}, { duration: 1 });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => {
-        if(t.vars.trigger === container) t.kill();
-      });
-    };
+    document.title = "MW Zawion — Intelligence";
+    window.scrollTo(0, 0);
   }, []);
 
+  const capabilities = [
+    "AI APPLICATIONS",
+    "AI AGENTS",
+    "AI AUTOMATION",
+    "AI SEARCH",
+    "AI WORKFLOWS",
+    "INTELLIGENT BUSINESS SYSTEMS"
+  ];
+
   return (
-    <div className="w-full bg-mw-black relative overflow-hidden">
-      {/* Network Background Mock */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="w-full h-full border border-mw-accent/20 rounded-full scale-[2] translate-y-1/2 translate-x-1/2 animate-spin-slow"></div>
-        <div className="w-full h-full border border-[#00AAFF]/20 rounded-full scale-[3] -translate-y-1/4 -translate-x-1/4 animate-spin-slow reverse"></div>
+    <div className="w-full bg-mw-white min-h-screen text-mw-black pt-32 pb-48">
+      
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-24 mb-32">
+        <h1 className="text-5xl md:text-[6vw] font-bold tracking-tighter uppercase leading-none mb-6">
+          WE DON'T JUST USE AI.<br />
+          <span className="text-mw-accent">WE BUILD WITH IT.</span>
+        </h1>
+        <p className="text-mw-muted text-lg md:text-2xl font-light max-w-2xl">
+          From intelligent assistants to automated workflows, MW Zawion builds practical AI systems that connect intelligence with real business operations.
+        </p>
       </div>
 
-      <div ref={containerRef} className="h-screen w-full relative z-10">
-        <h2 className="ai-intro-1 text-[8vw] md:text-[5vw] font-bold tracking-tighter text-mw-muted uppercase text-center w-full">
-          WE DON'T JUST USE AI.
-        </h2>
-        
-        <h2 className="ai-intro-2 text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white uppercase text-center w-full text-mw-accent">
-          WE BUILD WITH IT.
-        </h2>
+      {/* Network Visualization Placeholder */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-32">
+        <div className="w-full h-[40vh] md:h-[60vh] bg-mw-lightgrey border border-mw-border flex items-center justify-center relative overflow-hidden">
+          {/* Abstract Data Nodes */}
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #3155FF 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+          <div className="z-10 bg-mw-white px-8 py-4 border border-mw-border shadow-sm">
+            <span className="font-mono text-sm tracking-widest uppercase font-bold text-mw-accent">SYSTEM ARCHITECTURE: ACTIVE</span>
+          </div>
+        </div>
+      </div>
 
-        <div className="ai-list flex flex-col items-center gap-4 w-full">
-          {["AI APPLICATIONS", "AI AGENTS", "AI AUTOMATION", "AI SEARCH", "AI WORKFLOWS", "AI SYSTEMS"].map((item) => (
-            <h3 key={item} className="text-2xl md:text-5xl font-bold tracking-widest text-mw-white uppercase opacity-80 hover:opacity-100 hover:text-mw-accent transition-colors cursor-hover">
-              {item}
-            </h3>
+      {/* Capabilities */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 border-t border-mw-border pt-16">
+          {capabilities.map((cap, index) => (
+            <div key={index} className="flex items-center gap-4 group">
+              <div className="w-2 h-2 rounded-full bg-mw-border group-hover:bg-mw-lime transition-colors"></div>
+              <h3 className="text-xl font-bold tracking-widest uppercase">{cap}</h3>
+            </div>
           ))}
         </div>
-
-        <h2 className="ai-core-text text-[15vw] md:text-[10vw] font-bold tracking-tighter text-mw-white uppercase text-center w-full">
-          THE MACHINE
-        </h2>
-
-        <div className="ai-formula flex flex-col items-center gap-6 w-full text-center">
-          <span className="text-xl md:text-3xl font-mono text-mw-accent tracking-widest">INTELLIGENCE</span>
-          <span className="text-mw-muted">+</span>
-          <span className="text-xl md:text-3xl font-mono text-mw-white tracking-widest">DESIGN</span>
-          <span className="text-mw-muted">+</span>
-          <span className="text-xl md:text-3xl font-mono text-mw-white tracking-widest">CODE</span>
-          <span className="text-mw-accent">=</span>
-          <span className="text-3xl md:text-6xl font-bold tracking-tighter text-mw-white uppercase">EXPERIENCE</span>
-        </div>
       </div>
+
+      {/* CTA */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-32 text-center">
+        <Link to="/contact" className="inline-block bg-mw-black text-mw-white hover:bg-mw-accent transition-colors font-bold tracking-widest uppercase text-sm px-12 py-5">
+          DISCUSS AI SYSTEMS →
+        </Link>
+      </div>
+
     </div>
   );
 };

@@ -1,76 +1,105 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ServicesList from '../sections/Services/ServicesList';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
-  const containerRef = useRef(null);
-
   useEffect(() => {
-    document.title = "MW Zawion — Digital Services";
-    
-    const container = containerRef.current;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: "+=5000",
-        scrub: 1,
-        pin: true,
-      }
-    });
-
-    const w1 = container.querySelector('.engine-w1');
-    const w2 = container.querySelector('.engine-w2');
-    const w3 = container.querySelector('.engine-w3');
-    const w4 = container.querySelector('.engine-w4');
-    const w5 = container.querySelector('.engine-w5');
-    const engine = container.querySelector('.engine-final');
-
-    gsap.set([w1, w2, w3, w4, w5, engine], { autoAlpha: 0, scale: 0.8, filter: "blur(10px)", position: "absolute", top: "50%", left: "50%", xPercent: -50, yPercent: -50 });
-    
-    tl.to(w1, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 })
-      .to(w1, { autoAlpha: 0, scale: 1.5, filter: "blur(20px)", letterSpacing: "0.2em", duration: 1 })
-      
-      .to(w2, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 }, "-=0.5")
-      .to(w2, { autoAlpha: 0, scale: 1.5, filter: "blur(20px)", letterSpacing: "0.2em", duration: 1 })
-      
-      .to(w3, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 }, "-=0.5")
-      .to(w3, { autoAlpha: 0, scale: 1.5, filter: "blur(20px)", letterSpacing: "0.2em", duration: 1 })
-      
-      .to(w4, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 }, "-=0.5")
-      .to(w4, { autoAlpha: 0, scale: 1.5, filter: "blur(20px)", letterSpacing: "0.2em", duration: 1 })
-      
-      .to(w5, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 }, "-=0.5")
-      .to(w5, { autoAlpha: 0, scale: 1.5, filter: "blur(20px)", letterSpacing: "0.2em", duration: 1 })
-
-      .to(engine, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 2 })
-      .to({}, { duration: 1 });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => {
-        if(t.vars.trigger === container) t.kill();
-      });
-    };
+    document.title = "MW Zawion — Web, AI & Digital Services";
+    window.scrollTo(0, 0);
   }, []);
 
-  return (
-    <div className="w-full bg-mw-black">
-      <div ref={containerRef} className="h-screen w-full relative overflow-hidden flex items-center justify-center">
-        <div className="absolute top-12 left-6 md:left-12 flex flex-col gap-1">
-          <span className="text-mw-accent font-mono text-xs tracking-widest uppercase">WHAT WE BUILD.</span>
-        </div>
+  const services = [
+    {
+      id: "01",
+      title: "WEBSITE DEVELOPMENT",
+      description: "Custom websites designed around your brand and business. We build lightning-fast, accessible, and highly optimized marketing sites that convert.",
+      deliverables: ["Marketing Websites", "Landing Pages", "Corporate Sites", "Headless CMS"]
+    },
+    {
+      id: "02",
+      title: "WEB APPLICATIONS",
+      description: "Complex digital products, dashboards and platforms. We engineer scalable frontends and secure backends tailored to your specific operations.",
+      deliverables: ["SaaS Platforms", "Internal Dashboards", "Customer Portals", "Progressive Web Apps"]
+    },
+    {
+      id: "03",
+      title: "E-COMMERCE",
+      description: "High-converting digital storefronts and commerce experiences. We integrate headless architecture with robust payment systems.",
+      deliverables: ["Custom Storefronts", "Headless Shopify", "B2B Commerce", "Checkout Optimization"]
+    },
+    {
+      id: "04",
+      title: "AI SYSTEMS",
+      description: "AI-powered products, assistants and intelligent workflows. We integrate LLMs and machine learning into practical, usable business tools.",
+      deliverables: ["AI Chatbots", "Internal AI Assistants", "Document Processing", "Semantic Search"]
+    },
+    {
+      id: "05",
+      title: "AUTOMATION",
+      description: "Connect your tools and eliminate repetitive work. We design complex workflow automations using modern orchestration tools.",
+      deliverables: ["n8n Workflows", "CRM Automation", "Data Pipelines", "API Integrations"]
+    },
+    {
+      id: "06",
+      title: "DIGITAL EXPERIENCES",
+      description: "Launch pages, interactive experiences and digital identities. We combine 3D, WebGL, and advanced motion design for maximum impact.",
+      deliverables: ["Campaign Sites", "Interactive Storytelling", "Brand Portals", "WebGL Experiences"]
+    }
+  ];
 
-        <h2 className="engine-w1 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center whitespace-nowrap">WEBSITES</h2>
-        <h2 className="engine-w2 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center whitespace-nowrap">WEB APPLICATIONS</h2>
-        <h2 className="engine-w3 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center whitespace-nowrap">AI SYSTEMS</h2>
-        <h2 className="engine-w4 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center whitespace-nowrap">AUTOMATION</h2>
-        <h2 className="engine-w5 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center whitespace-nowrap">DIGITAL EXPERIENCES</h2>
-        <h2 className="engine-final text-[15vw] md:text-[10vw] font-bold tracking-tighter text-mw-accent uppercase m-0 leading-none text-center whitespace-nowrap">THE ENGINE</h2>
+  return (
+    <div className="w-full bg-mw-black min-h-screen text-mw-white pt-32 pb-48">
+      
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-24 mb-32">
+        <h1 className="text-5xl md:text-[6vw] font-bold tracking-tighter uppercase leading-none mb-6">
+          WHAT WE BUILD
+        </h1>
+        <p className="text-mw-muted text-lg md:text-2xl font-light max-w-3xl">
+          We combine premium design with rigorous engineering to build websites, products, and intelligent systems.
+        </p>
       </div>
 
-      <ServicesList />
+      {/* Services List */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex flex-col border-t border-mw-border">
+          {services.map((service) => (
+            <div key={service.id} className="grid grid-cols-1 md:grid-cols-12 gap-8 py-16 border-b border-mw-border group">
+              
+              <div className="md:col-span-2">
+                <span className="text-mw-accent font-mono text-sm tracking-widest">{service.id}</span>
+              </div>
+              
+              <div className="md:col-span-6">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase mb-6 group-hover:text-mw-muted transition-colors">
+                  {service.title}
+                </h2>
+                <p className="text-mw-white/80 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                  {service.description}
+                </p>
+              </div>
+              
+              <div className="md:col-span-4 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-xs font-mono tracking-widest text-mw-muted uppercase mb-4">TYPICAL DELIVERABLES</h4>
+                  <ul className="flex flex-col gap-2">
+                    {service.deliverables.map(item => (
+                      <li key={item} className="text-sm border-b border-mw-border pb-2 last:border-0 opacity-80">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="mt-12 md:mt-0 text-right md:text-left">
+                   <Link to="/contact" className="text-xs font-bold tracking-widest text-mw-white uppercase hover:text-mw-accent transition-colors">
+                    REQUEST SERVICE →
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };

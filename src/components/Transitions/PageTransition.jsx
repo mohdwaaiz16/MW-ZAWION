@@ -5,7 +5,9 @@ import gsap from 'gsap';
 const PageTransition = ({ children }) => {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
-  const transitionRef = useRef(null);
+  
+  const overlayRef = useRef(null);
+  const lineRef = useRef(null);
 
   useEffect(() => {
     if (location !== displayLocation) {
@@ -13,31 +15,37 @@ const PageTransition = ({ children }) => {
       const tl = gsap.timeline({
         onComplete: () => {
           setDisplayLocation(location);
-          // Scroll to top instantly before intro
           window.scrollTo(0, 0);
           
           // Intro animation
-          gsap.fromTo(
-            transitionRef.current,
-            { clipPath: 'circle(0% at 50% 50%)', opacity: 0 },
-            { clipPath: 'circle(150% at 50% 50%)', opacity: 1, duration: 1.2, ease: 'power3.inOut' }
-          );
+          gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.3, ease: 'power2.inOut', delay: 0.1 });
         }
       });
 
-      tl.to(transitionRef.current, {
-        opacity: 0,
-        clipPath: 'circle(0% at 50% 50%)',
-        duration: 0.8,
-        ease: 'power3.inOut'
-      });
+      tl.set(overlayRef.current, { autoAlpha: 1 })
+        .set(lineRef.current, { scaleX: 0 })
+        .to(lineRef.current, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+        .to(lineRef.current, { autoAlpha: 0, duration: 0.2 }, "+=0.1");
     }
   }, [location, displayLocation]);
 
   return (
-    <div ref={transitionRef} className="w-full min-h-screen relative z-10" style={{ clipPath: 'circle(150% at 50% 50%)' }}>
-      {children}
-    </div>
+    <>
+      <div className="w-full min-h-screen relative z-10">
+        {children}
+      </div>
+      
+      {/* Rapid Transition Overlay */}
+      <div 
+        ref={overlayRef} 
+        className="fixed inset-0 z-[100] bg-mw-black flex flex-col items-center justify-center pointer-events-none opacity-0 invisible"
+      >
+        <div 
+          ref={lineRef} 
+          className="absolute top-1/2 left-0 w-full h-[1px] bg-mw-accent scale-x-0 origin-left" 
+        />
+      </div>
+    </>
   );
 };
 

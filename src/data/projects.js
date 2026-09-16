@@ -1,42 +1,72 @@
 export const projects = [
   {
-    id: "01",
+    id: "zaylore-studio",
     title: "ZAYLORE STUDIO",
     category: "Fashion / E-commerce",
-    description: "A modern digital storefront and brand experience for a next-generation streetwear label.",
-    technologies: ["React", "JavaScript", "UI", "E-commerce"],
-    imagePlaceholder: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop"
+    year: "2025",
+    description: "A premium digital storefront and editorial brand experience for an emerging luxury fashion label.",
+    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2942&auto=format&fit=crop",
+    overview: "Zaylore Studio needed a digital flagship that matched the quality and editorial nature of their physical garments. We designed and engineered a headless e-commerce experience that blends high-fashion storytelling with frictionless conversion.",
+    challenge: "The primary challenge was balancing high-resolution imagery and complex scroll animations without compromising on load speeds or checkout conversion rates on mobile devices.",
+    approach: "We separated the frontend from the commerce engine, utilizing a headless architecture. This allowed us to build an unconstrained React-based frontend that pulls product data instantaneously via APIs.",
+    build: "The site was built using a custom React frontend, connected to Shopify's Storefront API. We utilized GSAP for all scroll-driven interactions to ensure 60fps performance.",
+    technology: ["React", "Shopify Plus", "GSAP", "Tailwind CSS"],
+    result: "The new platform increased mobile conversion rates and significantly elevated the brand's digital perception, supporting their expansion into new international markets."
   },
   {
-    id: "02",
+    id: "thw-international",
     title: "THW INTERNATIONAL",
     category: "B2B / Manufacturing",
-    description: "A premium industrial digital presence designed to communicate manufacturing capability and global business credibility.",
-    technologies: ["Web Development", "UI", "Responsive Design"],
-    imagePlaceholder: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=2000&auto=format&fit=crop"
+    year: "2025",
+    description: "A global corporate portal and product catalog for a heavy manufacturing enterprise.",
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2940&auto=format&fit=crop",
+    overview: "THW International required a digital overhaul to organize their massive catalog of industrial products for a global B2B audience.",
+    challenge: "Organizing thousands of technical SKUs into an intuitive, searchable interface while maintaining a premium corporate identity.",
+    approach: "We built a robust, searchable taxonomy and a custom filtering system, wrapping complex data in a minimal, highly professional interface.",
+    build: "The platform uses a custom CMS backend connected to a highly optimized Next.js frontend, ensuring instantaneous search results for technical buyers.",
+    technology: ["Next.js", "PostgreSQL", "Algolia Search", "TypeScript"],
+    result: "Streamlined the B2B procurement process, reducing customer support inquiries regarding technical specifications by making data instantly accessible."
   },
   {
-    id: "03",
-    title: "MULTILINGUAL AI SCHEME NAVIGATOR",
+    id: "multilingual-ai-scheme-navigator",
+    title: "AI SCHEME NAVIGATOR",
     category: "AI / GovTech",
-    description: "An AI-powered interface designed to help users discover relevant government schemes through a multilingual experience.",
-    technologies: ["AI", "React", "APIs"],
-    imagePlaceholder: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
+    year: "2024",
+    description: "An intelligent, multilingual search assistant designed to help citizens navigate complex government schemes.",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2944&auto=format&fit=crop",
+    overview: "Navigating government schemes is historically difficult due to complex language and poor search architecture. We built an AI-powered semantic search engine that understands natural language queries across multiple languages.",
+    challenge: "Ensuring AI accuracy (preventing hallucinations) when dealing with critical government policy data, while supporting low-bandwidth mobile users.",
+    approach: "We implemented a Retrieval-Augmented Generation (RAG) architecture, grounding the AI strictly in official documentation.",
+    build: "The system processes natural language queries, performs vector searches against embedded policy documents, and generates accurate, cited responses in the user's native language.",
+    technology: ["Python", "OpenAI", "Pinecone", "React"],
+    result: "Successfully demonstrated a new paradigm for public sector information retrieval, prioritizing accessibility and immediate comprehension."
   },
   {
-    id: "04",
+    id: "flameguard",
     title: "FLAMEGUARD",
-    category: "Robotics",
-    description: "An autonomous fire detection and extinguishing robotics project.",
-    technologies: ["Arduino", "Robotics", "Sensors", "Embedded Systems"],
-    imagePlaceholder: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2000&auto=format&fit=crop"
+    category: "Robotics / Engineering",
+    year: "2024",
+    description: "A digital command interface and marketing platform for an autonomous fire-suppression robotics company.",
+    image: "https://images.unsplash.com/photo-1614729939124-03290b56c9ce?q=80&w=2850&auto=format&fit=crop",
+    overview: "FlameGuard produces advanced robotics for extreme environments. They needed a digital presence that communicated both the raw power of their hardware and the sophisticated intelligence of their software.",
+    challenge: "Visualizing complex sensor data and autonomous capabilities in a way that non-technical stakeholders could easily understand.",
+    approach: "We combined high-impact industrial photography with clean, technical data visualizations to explain the robot's capabilities.",
+    build: "The website utilizes subtle WebGL elements to demonstrate sensor ranges and operational parameters without overwhelming the browser.",
+    technology: ["React", "Three.js", "Framer Motion", "Tailwind"],
+    result: "Established FlameGuard as a premium, cutting-edge player in the industrial safety robotics sector."
   },
   {
-    id: "05",
+    id: "ops-mind",
     title: "OPS MIND",
     category: "Technology / Engineering",
-    description: "A technology project focused on intelligent operational workflows and digital problem solving.",
-    technologies: ["AI", "Web", "Automation"],
-    imagePlaceholder: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop"
+    year: "2024",
+    description: "An internal operational dashboard and data visualization platform for enterprise logistics.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop",
+    overview: "Ops Mind is a complex internal tool designed to give operations managers real-time visibility into their supply chains and physical assets.",
+    challenge: "Designing an interface that can display massive amounts of real-time data without causing cognitive overload for the operator.",
+    approach: "We employed a strict, high-contrast brutalist design system, prioritizing data legibility and immediately actionable alerts over decorative UI.",
+    build: "A robust React application connected to a real-time WebSocket backend, featuring custom data visualization components.",
+    technology: ["React", "Node.js", "WebSockets", "D3.js"],
+    result: "Significantly reduced operator response times to supply chain anomalies through a drastically improved user interface."
   }
 ];

@@ -1,101 +1,152 @@
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ProjectEstimator from '../components/Estimator/ProjectEstimator';
+import React, { useEffect, useState } from 'react';
 
 const Contact = () => {
-  const containerRef = useRef(null);
-  const [showEstimator, setShowEstimator] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    projectType: '',
+    budget: '',
+    timeline: '',
+    message: ''
+  });
+
+  const [status, setStatus] = useState('idle'); // idle, loading, success
 
   useEffect(() => {
     document.title = "MW Zawion — Start a Project";
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('loading');
     
-    if (showEstimator) return; // Disable scroll animations if modal is open
-
-    const container = containerRef.current;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: "+=3000",
-        scrub: 1,
-        pin: true,
-      }
-    });
-
-    const label = container.querySelector('.contact-label');
-    const txt1 = container.querySelector('.contact-txt-1');
-    const txt2 = container.querySelector('.contact-txt-2');
-    const cta = container.querySelector('.contact-cta');
-
-    gsap.set([txt1, txt2, cta], { autoAlpha: 0, scale: 0.9, position: "absolute", top: "50%", left: "50%", xPercent: -50, yPercent: -50 });
-    gsap.set(label, { autoAlpha: 1 });
-
-    tl.to(label, { autoAlpha: 0, duration: 0.5 })
-      .to(txt1, { autoAlpha: 1, scale: 1, duration: 1 })
-      .to(txt1, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to(txt2, { autoAlpha: 1, scale: 1, duration: 1 })
-      .to(txt2, { autoAlpha: 0, scale: 1.1, duration: 1 })
-      .to({}, { duration: 0.5 }) // Pause black screen
-      .to(cta, { autoAlpha: 1, scale: 1, duration: 1 })
-      .to({}, { duration: 1 });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => {
-        if(t.vars.trigger === container) t.kill();
+    // Simulate form submission
+    setTimeout(() => {
+      setStatus('success');
+      setFormData({
+        name: '', email: '', company: '', projectType: '', budget: '', timeline: '', message: ''
       });
-    };
-  }, [showEstimator]);
+    }, 1500);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
-    <>
-      <div className="w-full bg-mw-black relative overflow-hidden">
-        <div ref={containerRef} className="h-screen w-full relative z-10 flex flex-col items-center justify-center">
-          <span className="contact-label text-mw-muted font-mono text-[10px] tracking-widest uppercase">
-            FINAL CHAPTER
-          </span>
-          
-          <h2 className="contact-txt-1 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase text-center leading-none w-full">
-            YOU HAVE<br />
-            <span className="text-mw-accent">THE IDEA.</span>
-          </h2>
-
-          <h2 className="contact-txt-2 text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase text-center leading-none w-full">
-            WE HAVE<br />
-            <span className="text-mw-accent">THE TOOLS.</span>
-          </h2>
-
-          <div className="contact-cta flex flex-col items-center text-center w-full">
-            <h2 className="text-[15vw] md:text-[10vw] font-bold tracking-tighter text-mw-white uppercase leading-none mb-8">
-              LET'S BUILD.
-            </h2>
-            <p className="text-mw-muted text-lg tracking-widest mb-12">
-              Have something worth building?
-            </p>
-            <button 
-              onClick={() => setShowEstimator(true)}
-              className="text-mw-black bg-mw-accent hover:bg-mw-white transition-colors font-bold tracking-widest uppercase text-sm px-12 py-6 cursor-hover"
-            >
-              START A PROJECT →
-            </button>
-          </div>
-        </div>
+    <div className="w-full bg-mw-white min-h-screen text-mw-black pt-32 pb-48">
+      
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-24 mb-24">
+        <h1 className="text-5xl md:text-[6vw] font-bold tracking-tighter uppercase leading-none mb-6">
+          LET'S BUILD<br />SOMETHING USEFUL.
+        </h1>
+        <p className="text-mw-muted text-lg md:text-2xl font-light">
+          Tell us what you're trying to build, improve or solve.
+        </p>
       </div>
 
-      {/* Project Estimator Modal overlay */}
-      {showEstimator && (
-        <div className="fixed inset-0 z-[100] bg-mw-black overflow-y-auto pt-24">
-          <button 
-            onClick={() => setShowEstimator(false)}
-            className="fixed top-8 right-8 z-[110] text-xs font-bold tracking-widest text-mw-muted uppercase hover:text-mw-white cursor-hover"
-          >
-            CLOSE ✕
-          </button>
-          <ProjectEstimator />
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-16">
+        
+        {/* Left: Contact Info */}
+        <div className="md:col-span-4 flex flex-col gap-12">
+          <div>
+            <h3 className="text-sm font-mono tracking-widest text-mw-muted uppercase mb-4">LOCATION</h3>
+            <p className="font-bold tracking-widest uppercase">Bangalore, India</p>
+          </div>
+          <div>
+            <h3 className="text-sm font-mono tracking-widest text-mw-muted uppercase mb-4">SOCIAL</h3>
+            <div className="flex flex-col gap-2">
+              <a href="#" className="font-bold tracking-widest uppercase hover:text-mw-accent transition-colors">Instagram</a>
+              <a href="#" className="font-bold tracking-widest uppercase hover:text-mw-accent transition-colors">LinkedIn</a>
+              <a href="#" className="font-bold tracking-widest uppercase hover:text-mw-accent transition-colors">GitHub</a>
+            </div>
+          </div>
         </div>
-      )}
-    </>
+
+        {/* Right: Form */}
+        <div className="md:col-span-8">
+          {status === 'success' ? (
+            <div className="bg-mw-lightgrey border border-mw-border p-12 text-center">
+              <div className="w-16 h-16 bg-mw-lime rounded-full mx-auto mb-6 flex items-center justify-center">
+                <svg className="w-8 h-8 text-mw-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <h3 className="text-2xl font-bold tracking-tighter uppercase mb-2">PROJECT RECEIVED</h3>
+              <p className="text-mw-muted font-light">We will review your requirements and get back to you shortly.</p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-8 text-xs font-bold tracking-widest uppercase border-b border-mw-black pb-1 hover:text-mw-accent transition-colors"
+              >
+                SUBMIT ANOTHER INQUIRY
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Name</label>
+                  <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors" placeholder="Jane Doe" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Email</label>
+                  <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors" placeholder="jane@company.com" />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Company</label>
+                <input type="text" name="company" value={formData.company} onChange={handleChange} className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors" placeholder="Company Name" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Project Type</label>
+                  <select required name="projectType" value={formData.projectType} onChange={handleChange} className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors appearance-none rounded-none">
+                    <option value="" disabled>Select Type</option>
+                    <option value="Website">Website</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="AI System">AI System</option>
+                    <option value="Automation">Automation</option>
+                    <option value="Digital Experience">Digital Experience</option>
+                    <option value="Custom Software">Custom Software</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Budget</label>
+                  <select required name="budget" value={formData.budget} onChange={handleChange} className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors appearance-none rounded-none">
+                    <option value="" disabled>Select Budget</option>
+                    <option value="25-50k">₹25K – ₹50K</option>
+                    <option value="50-1L">₹50K – ₹1L</option>
+                    <option value="1L-3L">₹1L – ₹3L</option>
+                    <option value="3L+">₹3L+</option>
+                    <option value="Discuss">Let's Discuss</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-mono tracking-widest text-mw-muted uppercase">Message</label>
+                <textarea required name="message" value={formData.message} onChange={handleChange} rows="4" className="w-full bg-transparent border-b border-mw-border py-4 focus:outline-none focus:border-mw-black transition-colors resize-none" placeholder="Tell us about your project goals..."></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="mt-8 self-start bg-mw-black text-mw-white hover:bg-mw-accent transition-colors font-bold tracking-widest uppercase text-sm px-12 py-5 disabled:opacity-50 flex items-center gap-4"
+              >
+                {status === 'loading' ? 'SENDING...' : 'SEND PROJECT →'}
+              </button>
+
+            </form>
+          )}
+        </div>
+
+      </div>
+    </div>
   );
 };
 

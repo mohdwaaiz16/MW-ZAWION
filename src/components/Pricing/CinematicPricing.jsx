@@ -1,173 +1,52 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import PricingIntro from './Scenes/PricingIntro';
-import SceneLaunch from './Scenes/SceneLaunch';
-import SceneGrowth from './Scenes/SceneGrowth';
-import SceneScale from './Scenes/SceneScale';
-import SceneCustom from './Scenes/SceneCustom';
-import SceneAISystems from './Scenes/SceneAISystems';
-import PricingProgress from './PricingProgress';
-
-gsap.registerPlugin(ScrollTrigger);
-
 const CinematicPricing = () => {
   const containerRef = useRef(null);
-  
-  const introRef = useRef(null);
-  const launchRef = useRef(null);
-  const growthRef = useRef(null);
-  const scaleRef = useRef(null);
-  const customRef = useRef(null);
-  const aiRef = useRef(null);
-
-  const [currentTier, setCurrentTier] = useState(0);
-  const [showProgress, setShowProgress] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
-    const isMobile = window.innerWidth < 768;
     
-    const masterTl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        end: isMobile ? "+=6000" : "+=10000",
+        end: "+=6000",
         scrub: 1,
         pin: true,
-        onUpdate: (self) => {
-          const p = self.progress;
-          setShowProgress(p > 0.05 && p < 0.9);
-          
-          if (p < 0.1) setCurrentTier(0); // Intro
-          else if (p < 0.3) setCurrentTier(1); // Launch
-          else if (p < 0.5) setCurrentTier(2); // Growth
-          else if (p < 0.7) setCurrentTier(3); // Scale
-          else if (p < 0.85) setCurrentTier(4); // Custom
-          else setCurrentTier(5); // AI
-        }
       }
     });
 
-    // --- SETUP STATES ---
-    const introLabel = introRef.current.querySelector('.intro-label');
-    const introLine = introRef.current.querySelector('.intro-line');
-    const introTiny = introRef.current.querySelector('.intro-tiny');
-    const introTitle = introRef.current.querySelector('.intro-title');
-    const introSub = introRef.current.querySelector('.intro-subtext');
-    gsap.set([introLabel, introLine, introTiny, introTitle, introSub], { autoAlpha: 0, y: 20 });
-    gsap.set(introRef.current, { autoAlpha: 1 });
-
-    const launchHeader = launchRef.current.querySelector('.launch-header');
-    const launchContent = launchRef.current.querySelector('.launch-content');
-    const launchPrice = launchRef.current.querySelector('.launch-price');
-    const launchLine = launchRef.current.querySelector('.launch-line');
-    gsap.set([launchHeader, launchContent, launchPrice], { autoAlpha: 0 });
-    gsap.set(launchLine, { width: 0, autoAlpha: 0 });
-
-    const growthHeader = growthRef.current.querySelector('.growth-header');
-    const growthContent = growthRef.current.querySelector('.growth-content');
-    const growthPrice = growthRef.current.querySelector('.growth-price');
-    const growthBg = growthRef.current.querySelector('.growth-bg');
-    gsap.set([growthHeader, growthContent, growthPrice, growthBg], { autoAlpha: 0 });
-
-    const scaleHeader = scaleRef.current.querySelector('.scale-header');
-    const scaleTitle = scaleRef.current.querySelector('.scale-title');
-    const scaleDesc = scaleRef.current.querySelector('.scale-desc');
-    const scalePrice = scaleRef.current.querySelector('.scale-price');
-    const scaleFeatures = scaleRef.current.querySelector('.scale-features');
-    const scaleCta = scaleRef.current.querySelector('.scale-cta');
-    const scaleNetwork = scaleRef.current.querySelector('.scale-network');
-    gsap.set([scaleHeader, scaleTitle, scaleDesc, scalePrice, scaleFeatures, scaleCta, scaleNetwork], { autoAlpha: 0 });
-
-    const customHeader = customRef.current.querySelector('.custom-header');
-    const customTitle = customRef.current.querySelector('.custom-title');
-    const customPrice = customRef.current.querySelector('.custom-price');
-    const customDesc = customRef.current.querySelector('.custom-desc');
-    const customSub = customRef.current.querySelector('.custom-subdesc');
-    const customServices = customRef.current.querySelector('.custom-services');
-    const customCta = customRef.current.querySelector('.custom-cta');
-    gsap.set([customHeader, customTitle, customPrice, customDesc, customSub, customServices, customCta], { autoAlpha: 0 });
-
-    const aiCard = aiRef.current.querySelector('.ai-card');
-    gsap.set(aiCard, { autoAlpha: 0, scale: 0.9 });
-
-
-    // --- TIMELINE ---
+    const intro = container.querySelector('.pricing-intro');
+    const plans = container.querySelectorAll('.pricing-plan');
+    const aiPlan = container.querySelector('.pricing-ai');
     
-    // INTRO
-    masterTl
-      .to(introLabel, { autoAlpha: 1, y: 0, duration: 1 })
-      .to(introLine, { autoAlpha: 1, y: 0, duration: 0.5 })
-      .to(introTiny, { autoAlpha: 1, y: 0, duration: 0.5 })
-      .to(introTitle, { autoAlpha: 1, y: 0, duration: 1.5 })
-      .to(introSub, { autoAlpha: 1, y: 0, duration: 1 })
-      .to({}, { duration: 1 }) // Pause
-      .to(introRef.current, { autoAlpha: 0, scale: 1.1, duration: 1.5 })
+    // Initial Setup
+    gsap.set(plans, { autoAlpha: 0, scale: 0.8, y: 50 });
+    gsap.set(aiPlan, { autoAlpha: 0, scale: 1.2, filter: "blur(20px)" });
 
-    // LAUNCH
-      .set(launchRef.current, { autoAlpha: 1 })
-      .to(launchHeader, { autoAlpha: 1, duration: 1 })
-      .to(launchPrice, { autoAlpha: 1, x: isMobile ? 0 : -50, duration: 1.5 }, "<")
-      .to(launchContent, { autoAlpha: 1, duration: 1.5 }, "-=0.5")
-      .to({}, { duration: 1.5 }) // Pause
+    tl.to(intro, { autoAlpha: 0, y: -100, duration: 1 })
       
-      // LAUNCH TO GROWTH TRANSITION
-      .to(launchLine, { autoAlpha: 1, width: isMobile ? "0%" : "150%", duration: 2 })
-      .to(launchContent, { autoAlpha: 0, x: -30, duration: 1 }, "-=1")
-      .to(launchPrice, { scale: 0.8, x: isMobile ? 0 : 50, duration: 1 }, "<")
-      .to(launchHeader, { autoAlpha: 0, duration: 0.5 }, "<")
-      .to(launchRef.current, { autoAlpha: 0, duration: 1 })
-
-    // GROWTH
-      .set(growthRef.current, { autoAlpha: 1 })
-      .to(growthBg, { autoAlpha: 1, duration: 1 })
-      .to(growthHeader, { autoAlpha: 1, duration: 0.5 }, "<")
-      .to(growthPrice, { autoAlpha: 1, duration: 1 }, "-=0.5")
-      .to(growthContent, { autoAlpha: 1, duration: 1.5 }, "-=0.5")
-      .to({}, { duration: 1.5 }) // Pause
-
-      // GROWTH TO SCALE TRANSITION
-      .to(growthBg, { scale: 1.2, autoAlpha: 0, duration: 1.5 })
-      .to(growthContent, { autoAlpha: 0, duration: 1 }, "<")
-      .to(growthPrice, { autoAlpha: 0, scale: 1.5, duration: 1 }, "<")
-      .to(growthRef.current, { autoAlpha: 0, duration: 0.5 })
-
-    // SCALE
-      .set(scaleRef.current, { autoAlpha: 1 })
-      .to(scaleNetwork, { autoAlpha: 1, scale: 1, duration: 2 })
-      .to(scaleHeader, { autoAlpha: 1, duration: 0.5 }, "-=1")
-      .to(scalePrice, { autoAlpha: 1, y: 0, duration: 1 }, "-=0.5")
-      .to(scaleTitle, { autoAlpha: 1, y: 0, duration: 1 }, "-=0.5")
-      .to(scaleDesc, { autoAlpha: 1, duration: 1 }, "-=0.5")
-      .to(scaleFeatures, { autoAlpha: 1, duration: 1 })
-      .to(scaleCta, { autoAlpha: 1, duration: 1 })
-      .to({}, { duration: 1.5 }) // Pause
-
-      // SCALE TO CUSTOM TRANSITION (Blackout)
-      .to(scaleNetwork, { scale: 2, autoAlpha: 0, duration: 2 })
-      .to([scaleHeader, scalePrice, scaleTitle, scaleDesc, scaleFeatures, scaleCta], { autoAlpha: 0, duration: 1 }, "-=1.5")
-      .to(scaleRef.current, { autoAlpha: 0, duration: 0.5 })
-
-    // CUSTOM
-      .set(customRef.current, { autoAlpha: 1 })
-      .to(customHeader, { autoAlpha: 1, duration: 1 })
-      .to(customTitle, { autoAlpha: 1, scale: 1, duration: 1.5 })
-      .to(customPrice, { autoAlpha: 1, duration: 1 }, "-=0.5")
-      .to(customDesc, { autoAlpha: 1, duration: 1 }, "-=0.5")
-      .to(customSub, { autoAlpha: 1, duration: 1 })
-      .to(customServices, { autoAlpha: 1, duration: 1 })
-      .to(customCta, { autoAlpha: 1, duration: 1 })
-      .to({}, { duration: 1.5 }) // Pause
+      // LAUNCH (Small Structure)
+      .to(plans[0], { autoAlpha: 1, scale: 1, y: 0, duration: 1 })
+      .to(plans[0], { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=0.5")
       
-      // CUSTOM TO AI TRANSITION
-      .to([customTitle, customPrice, customDesc, customSub, customServices, customCta], { autoAlpha: 0.2, filter: "blur(5px)", duration: 1.5 })
-
-    // AI SYSTEMS
-      .set(aiRef.current, { autoAlpha: 1 })
-      .to(aiCard, { autoAlpha: 1, scale: 1, duration: 1.5 })
-      .to({}, { duration: 2 }); // End Pause
+      // GROWTH (Larger Structure)
+      .to(plans[1], { autoAlpha: 1, scale: 1, y: 0, duration: 1 })
+      .to(plans[1], { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=0.5")
+      
+      // SCALE (Complex System)
+      .to(plans[2], { autoAlpha: 1, scale: 1, y: 0, duration: 1 })
+      .to(plans[2], { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=0.5")
+      
+      // CUSTOM (Large Architecture)
+      .to(plans[3], { autoAlpha: 1, scale: 1, y: 0, duration: 1 })
+      .to(plans[3], { autoAlpha: 0, scale: 1.2, duration: 1 }, "+=0.5")
+      
+      // AI SYSTEMS
+      .to(aiPlan, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 1.5 })
+      .to({}, { duration: 1 });
 
     return () => {
       ScrollTrigger.getAll().forEach(t => {
@@ -177,16 +56,73 @@ const CinematicPricing = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="h-screen w-full bg-mw-black relative overflow-hidden" id="pricing">
-      {showProgress && <PricingProgress currentTier={currentTier} />}
+    <div ref={containerRef} className="h-screen w-full relative overflow-hidden bg-mw-black flex items-center justify-center">
       
-      <PricingIntro innerRef={introRef} />
-      <SceneLaunch innerRef={launchRef} />
-      <SceneGrowth innerRef={growthRef} />
-      <SceneScale innerRef={scaleRef} />
-      <SceneCustom innerRef={customRef} />
-      <SceneAISystems innerRef={aiRef} />
-    </section>
+      <div className="pricing-intro absolute inset-0 flex flex-col items-center justify-center px-4">
+        <h1 className="text-[12vw] md:text-[8vw] font-bold tracking-tighter text-mw-white uppercase m-0 leading-none text-center">
+          WHAT ARE WE BUILDING?
+        </h1>
+        <p className="text-mw-muted font-light text-sm md:text-xl tracking-widest uppercase mt-8 text-center max-w-2xl">
+          From a first digital presence to a complete intelligent system.
+        </p>
+      </div>
+
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
+        {/* LAUNCH */}
+        <div className="pricing-plan absolute text-center">
+          <div className="w-16 h-16 border border-mw-white/20 mx-auto mb-12 flex items-center justify-center">
+            <div className="w-4 h-4 bg-mw-white"></div>
+          </div>
+          <h2 className="text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white leading-none">01 / LAUNCH</h2>
+          <p className="text-mw-muted text-xl md:text-2xl mt-4 tracking-widest font-mono">₹25K+</p>
+        </div>
+        
+        {/* GROWTH */}
+        <div className="pricing-plan absolute text-center">
+          <div className="w-32 h-32 border border-mw-white/20 mx-auto mb-12 grid grid-cols-2 grid-rows-2 gap-2 p-2">
+            <div className="bg-mw-white/50"></div><div className="bg-mw-white/30"></div>
+            <div className="bg-mw-white/80"></div><div className="bg-mw-white/10"></div>
+          </div>
+          <h2 className="text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white leading-none">02 / GROWTH</h2>
+          <p className="text-mw-muted text-xl md:text-2xl mt-4 tracking-widest font-mono">₹50K+</p>
+        </div>
+        
+        {/* SCALE */}
+        <div className="pricing-plan absolute text-center">
+          <div className="w-48 h-48 border border-mw-white/20 mx-auto mb-12 grid grid-cols-4 grid-rows-4 gap-1 p-1">
+            {Array.from({length: 16}).map((_, i) => (
+              <div key={i} className="bg-mw-white" style={{ opacity: Math.random() }}></div>
+            ))}
+          </div>
+          <h2 className="text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white leading-none">03 / SCALE</h2>
+          <p className="text-mw-muted text-xl md:text-2xl mt-4 tracking-widest font-mono">₹1L+</p>
+        </div>
+        
+        {/* CUSTOM */}
+        <div className="pricing-plan absolute text-center w-full max-w-4xl">
+          <div className="w-full h-64 border border-mw-white/20 mx-auto mb-12 flex flex-col gap-2 p-2 relative overflow-hidden">
+            <div className="absolute top-0 bottom-0 left-1/3 w-[1px] bg-mw-white/20"></div>
+            <div className="absolute top-0 bottom-0 left-2/3 w-[1px] bg-mw-white/20"></div>
+            <div className="w-1/3 h-1/4 bg-mw-white/40 mb-auto"></div>
+            <div className="w-2/3 h-1/3 bg-mw-white/80 ml-auto"></div>
+            <div className="w-1/2 h-1/4 bg-mw-white/20 mr-auto mt-auto"></div>
+          </div>
+          <h2 className="text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white leading-none">04 / CUSTOM</h2>
+          <p className="text-mw-muted text-xl md:text-2xl mt-4 tracking-widest font-mono">₹2L+</p>
+        </div>
+
+        {/* AI SYSTEMS */}
+        <div className="pricing-ai absolute text-center">
+          <div className="w-32 h-32 rounded-full border border-mw-accent mx-auto mb-12 flex items-center justify-center">
+             <div className="w-16 h-16 rounded-full bg-mw-white animate-pulse"></div>
+          </div>
+          <h2 className="text-[10vw] md:text-[6vw] font-bold tracking-tighter text-mw-white leading-none">AI SYSTEMS</h2>
+          <p className="text-mw-muted text-xl md:text-2xl mt-4 tracking-widest font-mono">₹75,000 – ₹5,00,000+</p>
+          <p className="text-mw-muted text-xs mt-8 tracking-widest uppercase">Final pricing depends on scope and complexity.</p>
+        </div>
+      </div>
+      
+    </div>
   );
 };
 
