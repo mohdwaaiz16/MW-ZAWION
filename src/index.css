@@ -1,40 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  --color-mw-black: #111111;
-  --color-mw-dark: #242424;
-  --color-mw-border: #E3E3DD;
-  --color-mw-white: #F7F7F2;
-  --color-mw-muted: #686866;
-  --color-mw-lightgrey: #E3E3DD;
-  --color-mw-accent: #3155FF;
-  --color-mw-lime: #C8FF3D;
-  --color-mw-softblue: #E9EDFF;
-  --color-mw-coral: #FF6B57;
-  --color-mw-purple: #7C5CFF;
-  --color-mw-softlime: #EEFFC2;
-  --font-sans: "Space Grotesk", "Satoshi", "Inter", sans-serif;
+  --color-mw-purple: #9d00ff;
+  --color-mw-pink: #ff007f;
+  --color-mw-blue: #0044ff;
+  --color-mw-cyan: #00ffff;
+  --color-mw-green: #ccff00;
+  --color-mw-yellow: #ffff00;
+  --color-mw-orange: #ff5500;
+  --color-mw-black: #0a0a0a;
+  --color-mw-offwhite: #f4f4f5;
+
+  --font-inter: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
 }
 
-
-@layer base {
-  html,
-  body {
-    @apply bg-mw-black text-mw-white font-sans antialiased;
-    overflow-x: hidden;
-  }
+:root {
+  background-color: var(--color-mw-black);
+  color: var(--color-mw-offwhite);
+  font-family: var(--font-inter);
 }
 
-/* Hide scrollbar for cinematic feel */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-mw-purple);
+  color: var(--color-mw-offwhite);
+}
+
+/* Hide scrollbar for cleaner look */
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
 }
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar-track {
+  background: var(--color-mw-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mw-purple);
 }
 
-/* Lenis Recommended Styles */
+/* Lenis smooth scrolling reset */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -47,6 +63,6 @@ html.lenis, html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-.lenis.lenis-scrolling iframe {
+.lenis.lenis-smooth iframe {
   pointer-events: none;
 }
