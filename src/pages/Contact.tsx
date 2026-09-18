@@ -68,13 +68,25 @@ export default function Contact() {
     
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 2000);
+    // Format message for WhatsApp
+    const message = `*New Project Enquiry* 🚀\n
+*Name:* ${formData.name}
+*Business/Brand:* ${formData.business}
+*Email:* ${formData.email}
+${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
+*Looking for:* ${formData.services.length > 0 ? formData.services.join(', ') : 'Not specified'}
+*Budget:* ${formData.budget || 'Not specified'}
+*Description:* ${formData.description}
+    `.trim();
+
+    // Open WhatsApp
+    const whatsappUrl = `https://wa.me/917200895492?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    setIsSubmitting(false);
+    setSubmitStatus('success');
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
