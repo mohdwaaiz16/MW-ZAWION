@@ -174,11 +174,6 @@ export default function Work() {
                           {project.ctaText}
                         </a>
                       )}
-                      {project.repositoryUrl && (
-                        <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="border border-white/20 text-white font-bold px-6 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-white/10 transition-colors">
-                          VIEW SOURCE →
-                        </a>
-                      )}
                     </div>
                   </div>
                   
