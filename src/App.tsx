@@ -1,4 +1,5 @@
 import { CustomCursor } from './components/Interaction/CustomCursor';
+import { Navbar } from './components/Navigation/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 
@@ -8,8 +9,9 @@ function App() {
       {/* Global Interactions */}
       <CustomCursor />
       
-      {/* Main Layout wrapper goes here */}
-      <div className="min-h-screen bg-mw-black text-mw-offwhite selection:bg-mw-purple selection:text-mw-offwhite">
+      {/* Main Layout wrapper */}
+      <div className="min-h-screen bg-mw-black text-mw-offwhite selection:bg-mw-purple selection:text-mw-offwhite font-sans">
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
