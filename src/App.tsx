@@ -1,4 +1,5 @@
 import { CustomCursor } from './components/Interaction/CustomCursor';
+import { AmbientBackground } from './components/Interaction/AmbientBackground';
 import { Navbar } from './components/Navigation/Navbar';
 import { Footer } from './components/Navigation/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -17,9 +18,11 @@ function App() {
       <CustomCursor />
       
       {/* Main Layout wrapper */}
-      <div className="min-h-screen bg-mw-black text-mw-offwhite selection:bg-mw-purple selection:text-mw-offwhite font-sans flex flex-col">
+      <div className="min-h-screen bg-mw-black text-mw-offwhite selection:bg-mw-purple selection:text-mw-offwhite font-sans flex flex-col relative">
+        <AmbientBackground />
+        
         <Navbar />
-        <div className="flex-grow">
+        <div className="flex-grow relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
