@@ -311,47 +311,67 @@ export default function Home() {
       </section>
 
       {/* 10 DESIGN x TECHNOLOGY */}
-      <section className="min-h-screen flex flex-col bg-mw-black relative">
-        <div className="flex flex-col md:flex-row flex-1">
-          <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r border-white/10 p-6 sm:p-12 md:p-24 flex flex-col justify-center">
-            <h2 className="font-display text-4xl sm:text-6xl md:text-[8rem] font-bold uppercase tracking-tighter text-white/10 mb-8 sm:mb-12">DESIGN</h2>
-            <ul className="flex flex-col gap-3 sm:gap-4 text-xl sm:text-2xl md:text-4xl font-light text-white/60">
-              <li>Typography</li>
-              <li>Visual systems</li>
-              <li>UI/UX</li>
-              <li>Motion</li>
-              <li>Branding</li>
-              <li>Interaction</li>
+      <section className="min-h-screen flex flex-col justify-center bg-mw-black relative overflow-hidden py-24 sm:py-32 border-b border-white/10">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 flex flex-col md:flex-row items-center justify-between relative">
+          
+          {/* Architectural Vertical Divider Line for desktop */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 pointer-events-none" />
+
+          {/* Left Column: DESIGN */}
+          <div className="w-full md:w-5/12 flex flex-col justify-center mb-12 md:mb-0 relative z-10">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-[clamp(2.5rem,5vw,5.5rem)] font-bold uppercase tracking-tighter text-white/15 mb-6 sm:mb-8 leading-none">
+              DESIGN
+            </h2>
+            <ul className="flex flex-col gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl font-light text-white/60">
+              {['Typography', 'Visual systems', 'UI/UX', 'Motion', 'Branding', 'Interaction'].map((item) => (
+                <li key={item} className="hover:text-white hover:translate-x-2 transition-all duration-300 cursor-default">
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="w-full md:w-1/2 p-6 sm:p-12 md:p-24 flex flex-col justify-center items-start md:items-end text-left md:text-right">
-            <h2 className="font-display text-4xl sm:text-6xl md:text-[8rem] font-bold uppercase tracking-tighter text-white/10 mb-8 sm:mb-12">TECHNOLOGY</h2>
-            <ul className="flex flex-col gap-3 sm:gap-4 text-xl sm:text-2xl md:text-4xl font-light text-white/60">
-              <li>Frontend</li>
-              <li>Backend</li>
-              <li>APIs</li>
-              <li>Databases</li>
-              <li>AI</li>
-              <li>Automation</li>
+
+          {/* Center Equation: Framed Focal Point */}
+          <div className="w-full md:w-auto my-8 md:my-0 flex items-center justify-center relative z-20 shrink-0">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-mw-black/95 border border-white/15 backdrop-blur-2xl px-8 sm:px-12 py-10 sm:py-14 rounded-3xl shadow-[0_0_60px_-15px_rgba(255,42,133,0.18)] flex flex-col items-center leading-none text-center hover:border-white/30 transition-all duration-500"
+            >
+              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tighter text-white">
+                DESIGN
+              </div>
+              <div className="text-mw-pink my-3 sm:my-4 text-2xl sm:text-3xl font-bold select-none">
+                +
+              </div>
+              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tighter text-white">
+                CODE
+              </div>
+              <div className="text-mw-cyan my-3 sm:my-4 text-2xl sm:text-3xl font-bold select-none">
+                =
+              </div>
+              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-mw-orange via-mw-pink to-mw-purple">
+                EXPERIENCE
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: TECHNOLOGY */}
+          <div className="w-full md:w-5/12 flex flex-col justify-center items-start md:items-end text-left md:text-right relative z-10 mt-12 md:mt-0">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-[clamp(2.5rem,5vw,5.5rem)] font-bold uppercase tracking-tighter text-white/15 mb-6 sm:mb-8 leading-none">
+              TECHNOLOGY
+            </h2>
+            <ul className="flex flex-col gap-3 sm:gap-4 text-xl sm:text-2xl md:text-3xl font-light text-white/60">
+              {['Frontend', 'Backend', 'APIs', 'Databases', 'AI', 'Automation'].map((item) => (
+                <li key={item} className="hover:text-white md:hover:-translate-x-2 hover:translate-x-2 transition-all duration-300 cursor-default">
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
-        </div>
-        
-        {/* Center Equation */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center mix-blend-difference px-4">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-display text-[clamp(1.75rem,7vw,6rem)] font-bold uppercase tracking-tighter text-white flex flex-col items-center leading-none text-center"
-          >
-            <div>DESIGN</div>
-            <div className="text-mw-pink my-2 sm:my-4">+</div>
-            <div>CODE</div>
-            <div className="text-mw-cyan my-2 sm:my-4">=</div>
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-mw-orange to-mw-purple">EXPERIENCE</div>
-          </motion.div>
+
         </div>
       </section>
 
