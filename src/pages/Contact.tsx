@@ -93,7 +93,7 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
     <main ref={containerRef} className="w-full bg-mw-black pt-24 min-h-screen text-mw-offwhite">
       
       {/* 03 HERO */}
-      <section className="min-h-[90vh] flex flex-col justify-center relative overflow-hidden px-6 md:px-12">
+      <section className="min-h-[90vh] flex flex-col justify-center relative overflow-hidden px-4 sm:px-6 md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-5xl md:text-[9rem] font-bold uppercase tracking-tighter leading-[0.85]"
+            className="font-display text-[clamp(2.5rem,9.5vw,9rem)] font-bold uppercase tracking-tighter leading-[0.88] sm:leading-[0.85]"
           >
             Got <br />
             Something <br />
@@ -119,7 +119,7 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="mt-12 text-white/60 max-w-xl text-lg md:text-xl font-light leading-relaxed"
+            className="mt-8 sm:mt-12 text-white/60 max-w-xl text-base sm:text-lg md:text-xl font-light leading-relaxed"
           >
             Tell us what you're building, what you're trying to solve and where you want to take it. We'll figure out the digital side.
           </motion.p>
@@ -135,23 +135,23 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
       </section>
 
       {/* 04 DIRECT CONTACT BAR */}
-      <section className="py-24 px-6 md:px-12 border-y border-white/10 bg-white/5 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 justify-between items-center">
-          <h2 className="font-display text-2xl md:text-4xl font-bold uppercase tracking-tighter text-white/40">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 border-y border-white/10 bg-white/5 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 sm:gap-12 justify-between items-start md:items-center">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tighter text-white/40">
             Prefer Talking?
           </h2>
-          <div className="flex flex-col sm:flex-row gap-8 w-full md:w-auto">
-            <a href="https://wa.me/917200895492" target="_blank" rel="noreferrer" data-cursor="hover" className="flex flex-col gap-2 group">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full md:w-auto">
+            <a href="https://wa.me/917200895492" target="_blank" rel="noreferrer" data-cursor="hover" className="flex flex-col gap-2 group min-h-[48px] justify-center">
               <span className="text-xs font-bold tracking-widest uppercase text-mw-green group-hover:text-white transition-colors">WhatsApp</span>
-              <span className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tighter group-hover:text-mw-green transition-colors flex items-center gap-4">
-                Let's Chat <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
+              <span className="font-display text-2xl sm:text-3xl md:text-5xl font-bold uppercase tracking-tighter group-hover:text-mw-green transition-colors flex items-center gap-3 sm:gap-4">
+                Let's Chat <span className="text-xl sm:text-2xl transition-transform group-hover:translate-x-2">→</span>
               </span>
             </a>
             <div className="hidden sm:block w-px h-24 bg-white/10" />
-            <a href="mailto:mwzawion@gmail.com" data-cursor="hover" className="flex flex-col gap-2 group">
+            <a href="mailto:mwzawion@gmail.com" data-cursor="hover" className="flex flex-col gap-2 group min-h-[48px] justify-center">
               <span className="text-xs font-bold tracking-widest uppercase text-mw-purple group-hover:text-white transition-colors">Email</span>
-              <span className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tighter group-hover:text-mw-purple transition-colors flex items-center gap-4">
-                mwzawion <span className="text-2xl transition-transform group-hover:translate-x-2">→</span>
+              <span className="font-display text-2xl sm:text-3xl md:text-5xl font-bold uppercase tracking-tighter group-hover:text-mw-purple transition-colors flex items-center gap-3 sm:gap-4 break-all sm:break-normal">
+                mwzawion <span className="text-xl sm:text-2xl transition-transform group-hover:translate-x-2">→</span>
               </span>
             </a>
           </div>
@@ -159,7 +159,7 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
       </section>
 
       {/* 05 MAIN PROJECT FORM */}
-      <section className="py-32 px-6 md:px-12 relative">
+      <section className="py-20 sm:py-32 px-4 sm:px-6 md:px-12 relative">
         <div className="max-w-4xl mx-auto">
           
           <AnimatePresence mode="wait">
@@ -168,16 +168,16 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                 key="success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-24"
+                className="text-center py-16 sm:py-24"
               >
-                <h2 className="font-display text-6xl md:text-8xl font-bold uppercase tracking-tighter text-mw-green mb-8">
+                <h2 className="font-display text-[clamp(2.25rem,8vw,7rem)] font-bold uppercase tracking-tighter text-mw-green mb-8">
                   Idea Received. 🚀
                 </h2>
-                <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-16">
+                <p className="text-lg sm:text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-12 sm:mb-16">
                   Thanks for reaching out. We've got the details. We'll review your project and get back to you.
                 </p>
                 <div className="flex justify-center gap-6">
-                  <a href="/" className="bg-white text-black font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-mw-green transition-colors">
+                  <a href="/" className="bg-white text-black font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-mw-green transition-colors min-h-[48px] flex items-center justify-center">
                     BACK TO HOME →
                   </a>
                 </div>
@@ -188,20 +188,20 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-24"
+                className="flex flex-col gap-16 sm:gap-20 md:gap-24"
               >
                 <div className="flex flex-col gap-4">
-                  <h2 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter">
+                  <h2 className="font-display text-[clamp(2rem,7vw,4.5rem)] font-bold uppercase tracking-tighter leading-[0.95] sm:leading-[0.9]">
                     Tell Us <br />
                     <span className="text-mw-orange">About The Project.</span>
                   </h2>
-                  <p className="text-white/50 text-lg">
+                  <p className="text-white/50 text-base sm:text-lg">
                     Don't worry about having everything figured out. Give us the basics and we'll take it from there.
                   </p>
                 </div>
 
                 {/* Progress Bar */}
-                <div className="sticky top-24 z-20 bg-mw-black/80 backdrop-blur-md py-4 border-b border-white/10 -mx-6 px-6 md:mx-0 md:px-0">
+                <div className="sticky top-24 z-20 bg-mw-black/90 backdrop-blur-md py-4 border-b border-white/10 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0">
                   <div className="flex justify-between text-xs font-bold tracking-widest uppercase mb-4">
                     <span className="text-white/40">Project Brief</span>
                     <span className={progressPercentage === 100 ? "text-mw-green" : "text-mw-orange"}>{progressPercentage}% Complete</span>
@@ -217,15 +217,15 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                 </div>
 
                 {/* Text Inputs */}
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-12 sm:gap-16">
                   {[
                     { id: 'name', label: '01 — Your Name', placeholder: 'What should we call you?', type: 'text', required: true },
                     { id: 'business', label: '02 — Business / Brand', placeholder: 'Your company, brand or project', type: 'text', required: true },
                     { id: 'email', label: '03 — Email', placeholder: 'you@example.com', type: 'email', required: true },
                     { id: 'phone', label: '04 — Phone / WhatsApp (Optional)', placeholder: '+91 XXXXX XXXXX', type: 'tel', required: false },
                   ].map(field => (
-                    <div key={field.id} className="flex flex-col gap-6">
-                      <label htmlFor={field.id} className="text-sm font-bold tracking-widest uppercase text-white/60">
+                    <div key={field.id} className="flex flex-col gap-4 sm:gap-6">
+                      <label htmlFor={field.id} className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/60">
                         {field.label} {field.required && <span className="text-mw-orange">*</span>}
                       </label>
                       <input
@@ -235,24 +235,24 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                         onChange={(e) => setFormData(prev => ({ ...prev, [field.id]: e.target.value }))}
                         placeholder={field.placeholder}
                         required={field.required}
-                        className="bg-transparent border-b border-white/20 pb-4 text-2xl md:text-4xl font-display outline-none focus:border-mw-orange transition-colors placeholder:text-white/10 text-white w-full rounded-none"
+                        className="bg-transparent border-b border-white/20 pb-4 text-xl sm:text-2xl md:text-4xl font-display outline-none focus:border-mw-orange transition-colors placeholder:text-white/10 text-white w-full rounded-none"
                       />
                     </div>
                   ))}
                 </div>
 
                 {/* Services Selection */}
-                <div className="flex flex-col gap-8">
-                  <label className="text-sm font-bold tracking-widest uppercase text-white/60">
+                <div className="flex flex-col gap-6 sm:gap-8">
+                  <label className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/60">
                     05 — What are you looking for?
                   </label>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2.5 sm:gap-4">
                     {['Web Design', 'Web Development', 'UI/UX Design', 'E-commerce', 'Branding', 'AI & Automation', 'Maintenance', 'Something Else'].map(service => (
                       <button
                         key={service}
                         type="button"
                         onClick={() => handleServiceToggle(service)}
-                        className={`px-6 py-4 rounded-full border text-sm font-bold tracking-widest uppercase transition-all ${
+                        className={`px-4 py-3 sm:px-6 sm:py-4 rounded-full border text-xs sm:text-sm font-bold tracking-widest uppercase transition-all min-h-[44px] flex items-center justify-center ${
                           formData.services.includes(service)
                             ? 'bg-mw-purple border-mw-purple text-white'
                             : 'bg-transparent border-white/20 text-white/60 hover:border-white/60 hover:text-white'
@@ -265,17 +265,17 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                 </div>
 
                 {/* Budget Selection */}
-                <div className="flex flex-col gap-8">
-                  <label className="text-sm font-bold tracking-widest uppercase text-white/60">
+                <div className="flex flex-col gap-6 sm:gap-8">
+                  <label className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/60">
                     06 — Project Budget
                   </label>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2.5 sm:gap-4">
                     {['₹5K – ₹15K', '₹15K – ₹30K', '₹30K – ₹50K', '₹50K – ₹1L', '₹1L+', 'NOT SURE YET'].map(budget => (
                       <button
                         key={budget}
                         type="button"
                         onClick={() => setFormData(prev => ({ ...prev, budget }))}
-                        className={`px-6 py-4 rounded-full border text-sm font-bold tracking-widest uppercase transition-all ${
+                        className={`px-4 py-3 sm:px-6 sm:py-4 rounded-full border text-xs sm:text-sm font-bold tracking-widest uppercase transition-all min-h-[44px] flex items-center justify-center ${
                           formData.budget === budget
                             ? 'bg-mw-pink border-mw-pink text-white'
                             : 'bg-transparent border-white/20 text-white/60 hover:border-white/60 hover:text-white'
@@ -288,8 +288,8 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                 </div>
 
                 {/* Description */}
-                <div className="flex flex-col gap-6">
-                  <label htmlFor="description" className="text-sm font-bold tracking-widest uppercase text-white/60">
+                <div className="flex flex-col gap-4 sm:gap-6">
+                  <label htmlFor="description" className="text-xs sm:text-sm font-bold tracking-widest uppercase text-white/60">
                     08 — Tell Us About It <span className="text-mw-orange">*</span>
                   </label>
                   <textarea
@@ -299,19 +299,19 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
                     placeholder="What's the idea? What are you trying to build? What problem are you trying to solve?"
                     required
                     rows={4}
-                    className="bg-transparent border-b border-white/20 pb-4 text-xl md:text-3xl font-display outline-none focus:border-mw-orange transition-colors placeholder:text-white/10 text-white w-full rounded-none resize-none"
+                    className="bg-transparent border-b border-white/20 pb-4 text-lg sm:text-xl md:text-3xl font-display outline-none focus:border-mw-orange transition-colors placeholder:text-white/10 text-white w-full rounded-none resize-none"
                   />
                 </div>
 
                 {/* Submit */}
-                <div className="pt-12">
+                <div className="pt-8 sm:pt-12">
                   <button
                     type="submit"
                     disabled={isSubmitting || progressPercentage < 50}
-                    className="group relative w-full overflow-hidden rounded-full bg-white px-8 py-8 md:py-12 text-center text-mw-black disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="group relative w-full overflow-hidden rounded-full bg-white px-4 sm:px-8 py-6 sm:py-8 md:py-12 text-center text-mw-black disabled:opacity-50 disabled:cursor-not-allowed transition-all min-h-[48px] flex items-center justify-center"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-mw-orange to-mw-pink translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
-                    <span className="relative z-10 font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter flex items-center justify-center gap-4 group-hover:text-white transition-colors">
+                    <span className="relative z-10 font-display text-[clamp(1.25rem,5.5vw,3.75rem)] font-bold uppercase tracking-tighter flex items-center justify-center gap-2 sm:gap-4 group-hover:text-white transition-colors">
                       {isSubmitting ? 'Sending Your Idea...' : 'Send The Idea →'}
                     </span>
                   </button>
@@ -327,9 +327,9 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
       </section>
 
       {/* 16 FAQ SECTION */}
-      <section className="py-32 px-6 md:px-12 bg-mw-black border-t border-white/10">
+      <section className="py-20 sm:py-32 px-4 sm:px-6 md:px-12 bg-mw-black border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-16">
+          <h2 className="font-display text-[clamp(2.25rem,7vw,3.75rem)] font-bold uppercase tracking-tighter mb-12 sm:mb-16">
             Frequently <br /> <span className="text-mw-purple">Asked.</span>
           </h2>
           <div className="flex flex-col border-t border-white/10">
@@ -339,12 +339,12 @@ ${formData.phone ? `*Phone:* ${formData.phone}\n` : ''}
               { q: 'Do you work with startups?', a: 'Yes. The process can adapt depending on the stage, scope and goals of the project.' },
               { q: 'Can you redesign an existing website?', a: 'Yes. We can review the existing experience and improve its design, usability, performance and technical implementation where appropriate.' },
             ].map((faq, i) => (
-              <details key={i} className="group border-b border-white/10 py-8 cursor-pointer">
-                <summary className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tighter list-none flex justify-between items-center group-hover:text-mw-purple transition-colors">
+              <details key={i} className="group border-b border-white/10 py-6 sm:py-8 cursor-pointer">
+                <summary className="font-display text-lg sm:text-2xl md:text-3xl font-bold uppercase tracking-tighter list-none flex justify-between items-center group-hover:text-mw-purple transition-colors min-h-[48px]">
                   {faq.q}
-                  <span className="text-3xl font-light opacity-50 group-open:rotate-45 transition-transform">+</span>
+                  <span className="text-2xl sm:text-3xl font-light opacity-50 group-open:rotate-45 transition-transform shrink-0 ml-4">+</span>
                 </summary>
-                <div className="mt-6 text-white/60 text-lg leading-relaxed max-w-2xl">
+                <div className="mt-4 sm:mt-6 text-white/60 text-base sm:text-lg leading-relaxed max-w-2xl">
                   {faq.a}
                 </div>
               </details>

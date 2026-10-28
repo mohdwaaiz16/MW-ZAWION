@@ -29,7 +29,7 @@ export default function NotFound() {
   }, []);
 
   return (
-    <main ref={containerRef} className="w-full bg-mw-black pt-24 min-h-screen text-mw-offwhite relative overflow-hidden flex flex-col justify-center items-center px-6 md:px-12">
+    <main ref={containerRef} className="w-full bg-mw-black pt-24 min-h-screen text-mw-offwhite relative overflow-hidden flex flex-col justify-center items-center px-4 sm:px-6 md:px-12">
       
       {/* 404 Grid Background */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 pointer-events-none" />
@@ -59,7 +59,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-6xl md:text-[8rem] font-bold uppercase tracking-tighter leading-[0.85] text-white flex flex-col"
+          className="font-display text-[clamp(2.75rem,10vw,8rem)] font-bold uppercase tracking-tighter leading-[0.88] sm:leading-[0.85] text-white flex flex-col"
         >
           <span>Lost</span>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-mw-pink to-mw-orange">In The</span>
@@ -70,7 +70,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="mt-12 text-white/60 text-xl font-light"
+          className="mt-8 sm:mt-12 text-white/60 text-lg sm:text-xl font-light"
         >
           Looks like this page doesn't exist.
         </motion.p>
@@ -79,12 +79,12 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="mt-16 flex flex-col sm:flex-row justify-center gap-6"
+          className="mt-12 sm:mt-16 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
         >
-          <Link to="/" data-cursor="hover" className="bg-white text-black font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-mw-purple hover:text-white transition-colors">
+          <Link to="/" data-cursor="hover" className="bg-white text-black font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-mw-purple hover:text-white transition-colors min-h-[48px] flex items-center justify-center">
             BACK HOME →
           </Link>
-          <Link to="/work" data-cursor="hover" className="border border-white/20 text-white font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-white/10 transition-colors">
+          <Link to="/work" data-cursor="hover" className="border border-white/20 text-white font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase hover:bg-white/10 transition-colors min-h-[48px] flex items-center justify-center">
             VIEW OUR WORK →
           </Link>
         </motion.div>
